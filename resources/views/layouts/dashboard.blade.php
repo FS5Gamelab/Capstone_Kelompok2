@@ -1,245 +1,139 @@
-<!--
-=========================================================
-* Soft UI Dashboard - v1.0.7
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/soft-ui-dashboard
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://www.creative-tim.com/license)
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
--->
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-        <link rel="icon" type="image/png" href="../assets/img/favicon.png">
-        <title>Soft UI Dashboard by Creative Tim</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 
-        <!--     Fonts and icons     -->
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+    <!-- Bootstrap@5.3.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
-        <!-- Nucleo Icons -->
-        <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
-        <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+    <!-- Google Font | Ubuntu -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anta&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
 
-        <!-- Font Awesome Icons -->
-        <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-        <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+    <!-- Google Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,200,0,0" />
 
-        <!-- CSS Files -->
-        <link id="pagestyle" href="../assets/css/soft-ui-dashboard.css?v=1.0.7" rel="stylesheet" />
-
-        <!-- Nepcha Analytics (nepcha.com) -->
-        <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
-        <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
-
-        <!-- Ionicons -->
-        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-        <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    </head>
-
-    <body class="g-sidenav-show  bg-gray-100">
-        <x-side-nav></x-side-nav>
-        <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
-            <!-- Navbar -->
-            <x-navbar>{{ $title }}</x-navbar>
-            
-            @yield('contents')
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+    <div class="container-fluid p-0 d-flex">
+        <x-sidebar></x-sidebar>
+        <main class="d-flex col-md-9 col-12 flex-column flex-fill px-3">
+            <x-header></x-header>
+            <div class="contents flex-fill overflow-y-auto">
+                @yield('content')
+            </div>
         </main>
-        <!--   Core JS Files   -->
-        <script src="../assets/js/core/popper.min.js"></script>
-        <script src="../assets/js/core/bootstrap.min.js"></script>
-        <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
-        <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
-        <script src="../assets/js/plugins/chartjs.min.js"></script>
-        <script>
-            var ctx = document.getElementById("chart-bars").getContext("2d");
+    </div>
 
-            new Chart(ctx, {
-            type: "bar",
-            data: {
-                labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-                datasets: [{
+    <!-- jQuery@3.7.1 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <!-- Bootstrap@5.3.3 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    
+    <script src="/assets/js/chartjs.min.js"></script>
+    <script src="/assets/js/script.js"></script>
+    <script>
+        var ctx2 = document.getElementById("chart-line").getContext("2d");
+
+        new Chart(ctx2, {
+        type: "line",
+        data: {
+            labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+            datasets: [{
                 label: "Sales",
-                tension: 0.4,
                 borderWidth: 0,
-                borderRadius: 4,
-                borderSkipped: false,
-                backgroundColor: "#fff",
-                data: [450, 200, 100, 220, 500, 100, 400, 230, 500],
+                pointRadius: 0,
+                borderColor: "#6c757dbe",
+                borderWidth: 3,
+                fill: true,
+                data: [50, 40, 300, 50, 40, 300, 220, 500, 250, 400, 230, 150],
                 maxBarThickness: 6
-                }, ],
+
             },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                legend: {
-                    display: false,
-                }
-                },
-                interaction: {
-                intersect: false,
-                mode: 'index',
-                },
-                scales: {
-                y: {
-                    grid: {
-                    drawBorder: false,
-                    display: false,
-                    drawOnChartArea: false,
-                    drawTicks: false,
-                    },
-                    ticks: {
-                    suggestedMin: 0,
-                    suggestedMax: 500,
-                    beginAtZero: true,
-                    padding: 15,
-                    font: {
-                        size: 14,
-                        family: "Open Sans",
-                        style: 'normal',
-                        lineHeight: 2
-                    },
-                    color: "#fff"
-                    },
-                },
-                x: {
-                    grid: {
-                    drawBorder: false,
-                    display: false,
-                    drawOnChartArea: false,
-                    drawTicks: false
-                    },
-                    ticks: {
-                    display: false
-                    },
-                },
-                },
+            {
+                label: "Visitors",
+                borderWidth: 0,
+                pointRadius: 0,
+                borderColor: "#0d6efdbe",
+                borderWidth: 3,
+                fill: true,
+                data: [30, 90, 40, 30, 90, 40, 140, 290, 290, 340, 230, 400],
+                maxBarThickness: 6
             },
-            });
-
-
-            var ctx2 = document.getElementById("chart-line").getContext("2d");
-
-            var gradientStroke1 = ctx2.createLinearGradient(0, 230, 0, 50);
-
-            gradientStroke1.addColorStop(1, 'rgba(203,12,159,0.2)');
-            gradientStroke1.addColorStop(0.2, 'rgba(72,72,176,0.0)');
-            gradientStroke1.addColorStop(0, 'rgba(203,12,159,0)'); //purple colors
-
-            var gradientStroke2 = ctx2.createLinearGradient(0, 230, 0, 50);
-
-            gradientStroke2.addColorStop(1, 'rgba(20,23,39,0.2)');
-            gradientStroke2.addColorStop(0.2, 'rgba(72,72,176,0.0)');
-            gradientStroke2.addColorStop(0, 'rgba(20,23,39,0)'); //purple colors
-
-            new Chart(ctx2, {
-            type: "line",
-            data: {
-                labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-                datasets: [{
-                    label: "Mobile apps",
-                    tension: 0.4,
-                    borderWidth: 0,
-                    pointRadius: 0,
-                    borderColor: "#cb0c9f",
-                    borderWidth: 3,
-                    backgroundColor: gradientStroke1,
-                    fill: true,
-                    data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
-                    maxBarThickness: 6
-
-                },
-                {
-                    label: "Websites",
-                    tension: 0.4,
-                    borderWidth: 0,
-                    pointRadius: 0,
-                    borderColor: "#3A416F",
-                    borderWidth: 3,
-                    backgroundColor: gradientStroke2,
-                    fill: true,
-                    data: [30, 90, 40, 140, 290, 290, 340, 230, 400],
-                    maxBarThickness: 6
-                },
-                ],
+            {
+                label: "Viewing Products",
+                borderWidth: 0,
+                pointRadius: 0,
+                borderColor: "#ffc107be",
+                borderWidth: 3,
+                fill: true,
+                data: [40, 140, 290, 290, 30, 90, 40, 30, 90, 340, 330, 300],
+                maxBarThickness: 6
             },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                legend: {
-                    display: false,
-                }
-                },
-                interaction: {
-                intersect: false,
-                mode: 'index',
-                },
-                scales: {
-                y: {
-                    grid: {
-                    drawBorder: false,
-                    display: true,
-                    drawOnChartArea: true,
-                    drawTicks: false,
-                    borderDash: [5, 5]
-                    },
-                    ticks: {
-                    display: true,
-                    padding: 10,
-                    color: '#b2b9bf',
-                    font: {
-                        size: 11,
-                        family: "Open Sans",
-                        style: 'normal',
-                        lineHeight: 2
-                    },
-                    }
-                },
-                x: {
-                    grid: {
-                    drawBorder: false,
-                    display: false,
-                    drawOnChartArea: false,
-                    drawTicks: false,
-                    borderDash: [5, 5]
-                    },
-                    ticks: {
-                    display: true,
-                    color: '#b2b9bf',
-                    padding: 20,
-                    font: {
-                        size: 11,
-                        family: "Open Sans",
-                        style: 'normal',
-                        lineHeight: 2
-                    },
-                    }
-                },
-                },
-            },
-            });
-        </script>
-        <script>
-            var win = navigator.platform.indexOf('Win') > -1;
-            if (win && document.querySelector('#sidenav-scrollbar')) {
-            var options = {
-                damping: '0.5'
+            ],
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+            legend: {
+                display: false,
             }
-            Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
-            }
-        </script>
-        <!-- Github buttons -->
-        <script async defer src="https://buttons.github.io/buttons.js"></script>
-        <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-        <script src="../assets/js/soft-ui-dashboard.min.js?v=1.0.7"></script>
-    </body>
+            },
+            interaction: {
+            intersect: false,
+            mode: 'index',
+            },
+            scales: {
+            y: {
+                grid: {
+                drawBorder: false,
+                display: true,
+                drawOnChartArea: true,
+                drawTicks: false,
+                borderDash: [5, 5]
+                },
+                ticks: {
+                display: true,
+                padding: 10,
+                color: '#b2b9bf',
+                font: {
+                    size: 11,
+                    family: "Open Sans",
+                    style: 'normal',
+                    lineHeight: 2
+                },
+                }
+            },
+            x: {
+                grid: {
+                drawBorder: false,
+                display: false,
+                drawOnChartArea: false,
+                drawTicks: false,
+                borderDash: [5, 5]
+                },
+                ticks: {
+                display: true,
+                color: '#b2b9bf',
+                padding: 20,
+                font: {
+                    size: 11,
+                    family: "Open Sans",
+                    style: 'normal',
+                    lineHeight: 2
+                },
+                }
+            },
+            },
+        },
+        });
+    </script>
+</body>
 </html>
