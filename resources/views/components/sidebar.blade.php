@@ -15,7 +15,7 @@
                 <div class="nav-divider start mb-2"></div>
                 <x-snav active="{{ Request::is('dashboard') }}" href="/dashboard" icon="dashboard">Dashboard</x-snav>
                 <x-snav active="{{ Request::is('dashboard/orders') }}" href="/dashboard/orders" icon="order_play">Orders</x-snav>
-                <x-snav active="{{ Request::is('dashboard/messages') }}" href="/dashboard/messages" icon="headset_mic">Customer Service</x-snav>
+                {{-- <x-snav active="{{ Request::is('dashboard/messages') }}" href="/dashboard/messages" icon="headset_mic">Customer Service</x-snav> --}}
 
                 <div class="nav-item pt-3 pb-1 text-secondary">Products</div>
                 <x-snav active="{{ Request::is('dashboard/products') }}" href="/dashboard/products" icon="deployed_code">Item</x-snav>
@@ -31,6 +31,7 @@
             </nav>
             <hr>
             <nav class="aside-footer">
+                <x-snav active="{{ Request::is('dashboard/settings') }}" href="/dashboard/settings" icon="settings">Settings</x-snav>
                 <div class="nav-item my-2">
                     <a class="nav-link p-1 d-flex align-items-center border rounded" href="#">
                         <span class="material-symbols-outlined">settings</span>
