@@ -32,14 +32,8 @@
             <hr>
             <nav class="aside-footer">
                 <x-snav active="{{ Request::is('dashboard/settings') }}" href="/dashboard/settings" icon="settings">Settings</x-snav>
-                <div class="nav-item my-2">
-                    <a class="nav-link p-1 d-flex align-items-center border rounded" href="#">
-                        <span class="material-symbols-outlined">settings</span>
-                        <span class="flex-fill ps-2 text-nowrap text-truncate">Settings</span>
-                    </a>
-                </div>
                 <div class="nav-item mb-2">
-                    <a class="nav-link link-danger p-1 d-flex align-items-center border rounded" href="#">
+                    <a class="nav-link link-danger p-1 d-flex align-items-center border rounded" href="/signout">
                         <span class="material-symbols-outlined">logout</span>
                         <span class="flex-fill ps-2 text-nowrap text-truncate">Sign Out</span>
                     </a>
