@@ -19,7 +19,7 @@ return new class extends Migration
             $table->json('size');
             $table->integer('stock');
             $table->integer('price');
-            $table->string('status');
+            $table->enum('status', ['Available', 'Pre-Order', 'Out of Stock']);
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('brand_id');
             $table->unsignedBigInteger('discount_id');
@@ -27,10 +27,6 @@ return new class extends Migration
             $table->timestamp('archived_at')->nullable();
             $table->softDeletes('deleted_at');
             $table->timestamps();
-            
-            $table->foreign('category_id')->references('id')->on('sub_categories')->onDelete('cascade');
-            $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');
-            $table->foreign('discount_id')->references('id')->on('discounts')->onDelete('cascade');
         });
     }
 

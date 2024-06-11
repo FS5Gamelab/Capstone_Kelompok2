@@ -25,8 +25,10 @@
         <x-sidebar></x-sidebar>
         <main class="d-flex col-md-9 col-12 flex-column flex-fill px-3">
             <x-header>{{ $title }}</x-header>
-            <div class="contents flex-fill overflow-y-auto">
+            <div class="contents d-flex flex-column flex-fill overflow-y-auto">
+                <x-toolbars></x-toolbars>
                 @yield('content')
+                <x-pagination :paginateContent="$data"></x-pagination>
             </div>
         </main>
     </div>

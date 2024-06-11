@@ -13,7 +13,7 @@ class UserController extends Controller
     public function index()
     {
         return view('dashboard.users.index', [
-            'title' => 'User'
+            'title' => 'Manage User'
         ]);
     }
 
@@ -22,7 +22,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.users.create', [
+            'title' => 'New User'
+        ]);
     }
 
     /**

@@ -5,6 +5,10 @@
     color: #ff3c00;
 }
 
+.transition-0{
+    transition: none;
+}
+
 .fs-i1{
     font-size: 27px;
 }

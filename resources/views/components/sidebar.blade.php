@@ -15,10 +15,10 @@
                 <div class="nav-divider start mb-2"></div>
                 <x-snav active="{{ Request::is('dashboard') }}" href="/dashboard" icon="dashboard">Dashboard</x-snav>
                 <x-snav active="{{ Request::is('dashboard/orders') }}" href="/dashboard/orders" icon="order_play">Orders</x-snav>
-                {{-- <x-snav active="{{ Request::is('dashboard/messages') }}" href="/dashboard/messages" icon="headset_mic">Customer Service</x-snav> --}}
+                <x-snav active="{{ Request::is('dashboard/transactions') }}" href="/dashboard/transactions" icon="receipt_long">Transactions</x-snav>
 
                 <div class="nav-item pt-3 pb-1 text-secondary">Products</div>
-                <x-snav active="{{ Request::is('dashboard/products') }}" href="/dashboard/products" icon="deployed_code">Item</x-snav>
+                <x-snav active="{{ Request::is('dashboard/products') }}" href="/dashboard/products" icon="deployed_code">Products</x-snav>
                 <x-snav active="{{ Request::is('dashboard/brands') }}" href="/dashboard/brands" icon="apartment">Brands</x-snav>
                 <x-snav active="{{ Request::is('dashboard/categories') }}" href="/dashboard/categories" icon="category">Category</x-snav>
                 <x-snav active="{{ Request::is('dashboard/discounts') }}" href="/dashboard/discounts" icon="sell">Discounts</x-snav>
