@@ -6,18 +6,15 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Dcategories extends Component
+class Alert extends Component
 {
-    public $url, $img, $alt, $desc;
+    public $type;
     /**
      * Create a new component instance.
      */
-    public function __construct($href, $src, $alt, $description)
+    public function __construct($type)
     {
-        $this->url = $href;
-        $this->img = $src;
-        $this->alt = $alt;
-        $this->desc = $description;
+        $this->type = $type;
     }
 
     /**
@@ -25,6 +22,6 @@ class Dcategories extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.dcategories');
+        return view('components.alert');
     }
 }

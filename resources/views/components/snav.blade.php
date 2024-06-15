@@ -1,6 +1,6 @@
-<div class="nav-item mb-2 {{ $active ? 'active' : '' }}">
-    <a class="nav-link p-1 d-flex align-items-center border rounded" href="{{ $active ? "#" : $href }}">
+<div class="nav-item">
+    <a href="{{ $href }}" class="btn btn-dark d-flex gap-2 {{ $active ? 'active' : '' }}">
         <span class="material-symbols-outlined">{{ $icon }}</span>
-        <span class="flex-fill ps-2 text-nowrap text-truncate me-3">{{ $slot }}</span>
+        {{ $slot }}
     </a>
 </div>

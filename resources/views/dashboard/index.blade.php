@@ -1,6 +1,6 @@
 @extends('layouts.dashboard')
 
-@section('content')
+@section('contents')
 <div class="content container-fluid h-100 d-flex flex-column">
     <div class="row py-3">
         <div class="col-12 col-sm-6 col-lg-3 mb-2 mb-sm-2">

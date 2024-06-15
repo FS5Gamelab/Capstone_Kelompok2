@@ -9,6 +9,7 @@ use Illuminate\View\Component;
 
 class Breadcrumb extends Component
 {
+    public $href;
     /**
      * Create a new component instance.
      */

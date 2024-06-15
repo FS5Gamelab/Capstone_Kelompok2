@@ -16,7 +16,7 @@ class CategoryController extends Controller
     {
         $category = Category::orderBy('created_at', 'desc')->paginate(20);
         return view('dashboard.category.index', [
-            'title' => 'Categories', 
+            'title' => 'Category', 
             'data' => $category
         ]);
     }
@@ -27,7 +27,7 @@ class CategoryController extends Controller
     public function create()
     {
         return view('dashboard.category.create', [
-            'title' => 'Create Category'
+            'title' => 'New Category'
         ]);
     }
 
@@ -44,10 +44,10 @@ class CategoryController extends Controller
             'description' => $request->description
         ]);
 
-        return redirect()->route('category.index')->with(
+        return redirect()->route('categories.index')->with(
             'response', [
-                'status' => "success", 
-                'messages' => "Category created successfully!"
+                'type' => "success", 
+                'message' => "Category created successfully!"
             ]);
     }
 
@@ -55,17 +55,15 @@ class CategoryController extends Controller
      * Display the specified resource.
      */
     /**
- * Display the specified resource.
- */
-public function show($id)
-{
-    // dd($category->id);
-    $category = Category::findOrFail($id);
-    return view('dashboard.category.__show', [
-        'title' => 'Category',
-        'category' => $category
-    ]);
-}
+     * Display the specified resource.
+     */
+    public function show(Category $category)
+    {
+        return view('dashboard.category.show', [
+            'title' => 'Category',
+            'data' => $category
+        ]);
+    }
 
 
     /**
