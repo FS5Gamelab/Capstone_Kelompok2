@@ -38,7 +38,7 @@
                         <div class="container-fluid mt-3 mb-1 bg-light">
                             Products
                         </div>
-                        <x-snav active="{{ Request::is('dashboard/products') }}" href="#" icon="package_2">Product</x-snav>
+                        <x-snav active="{{ Request::is('dashboard/products') }}" href="{{ route('products.index') }}" icon="package_2">Product</x-snav>
                         <x-snav active="{{ Request::is('dashboard/brands') }}" href="#" icon="apartment">Brand</x-snav>
                         <x-snav active="{{ Request::is('dashboard/categories*') }}" href="{{ route('categories.index') }}" icon="category">Category</x-snav>
                         <x-snav active="{{ Request::is('dashboard/discounts') }}" href="#" icon="sell">Discount</x-snav>
@@ -100,8 +100,8 @@
                 <div class="container-fluid mt-3 mb-1 bg-light">
                     Products
                 </div>
-                <x-snav active="{{ Request::is('dashboard/products') }}" href="#" icon="package_2">Product</x-snav>
-                <x-snav active="{{ Request::is('dashboard/brands') }}" href="#" icon="apartment">Brand</x-snav>
+                <x-snav active="{{ Request::is('dashboard/products') }}" href="{{ route('products.index') }}" icon="package_2">Product</x-snav>
+                <x-snav active="{{ Request::is('dashboard/brands') }}" href="{{ route('brands.index') }}" icon="apartment">Brand</x-snav>
                 <x-snav active="{{ Request::is('dashboard/categories*') }}" href="{{ route('categories.index') }}" icon="category">Category</x-snav>
                 <x-snav active="{{ Request::is('dashboard/discounts') }}" href="#" icon="sell">Discount</x-snav>
                 <x-snav active="{{ Request::is('dashboard/coupons') }}" href="#" icon="confirmation_number">Coupon</x-snav>

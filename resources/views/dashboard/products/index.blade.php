@@ -1,43 +1,27 @@
-@extends('layouts.list')
+@extends('layouts.dashboard')
 
-@section('content')
-<div class="content container-fluid flex-fill overflow-auto mt-2">
-    <div class="row">
-        @foreach ($data as $product)  
-        <x-dproducts 
-            src="{{ asset('storage/Products/' .$product->image) }}" 
-            href="{{ route('products.show', $product->id) }}" 
-            stock="{{ $product->stock }}" 
-            reg="{{ $product->created_at }}" 
-            exp="{{ $product->expired_at }}" 
-            desc="{{ $product->description }}" 
-            alt="{{ $product->name }}">
-        {{ $product->name }}
-        </x-dproducts>
-        @endforeach
-    </div>
-</div>
-{{-- <div class="content container-fluid py-2 mt-auto"> 
-    <div class="row">
-        <div class="pages col-12 d-flex justify-content-center align-items-center gap-3 fw-bold">
-            <a href="#" class="btn btn-secondary p-1 d-flex bg-secondary rounded">
-                <span class="material-symbols-outlined">chevron_left</span>
+@section('contents')
+<x-toolbar></x-toolbar>
+
+<div class="container-fluid py-3 flex-fill overflow-y-auto">
+    @foreach ($data as $product)
+    <div class="row mb-3 mx-2 align-items-center py-1 border rounded">
+        <div class="col-1 text-center text-truncate">{{ $loop->iteration }}</div>
+        <div class="col text-truncate">{{ $product->name }}</div>
+        <div class="col-2 d-none d-sm-block col-md-2 text-center text-truncate">999</div>
+        <div class="col-auto d-flex gap-2">
+            <a href="/dashboard/categories/{{ $product->code }}" class="btn p-1 btn-secondary d-flex">
+                <span class="material-symbols-outlined">visibility</span>
             </a>
-            <a href="#" class="nav-link link-dark disabled d-flex">1</a>
-            <a href="#" class="nav-link link-secondary d-flex">2</a>
-            <a href="#" class="nav-link link-secondary d-flex">3</a>
-            <a href="#" class="nav-link link-secondary d-flex">4</a>
-            <a href="#" class="nav-link link-secondary d-flex">5</a>
-            <a href="#" class="nav-link link-secondary d-flex">6</a>
-            <a href="#" class="nav-link link-secondary d-flex">7</a>
-            <a href="#" class="nav-link link-secondary d-flex">8</a>
-            <a href="#" class="nav-link link-secondary d-flex">9</a>
-            <a href="#" class="nav-link link-secondary d-flex">10</a>
-            <a href="#" class="btn btn-secondary p-1 d-flex bg-secondary rounded">
-                <span class="material-symbols-outlined">chevron_right</span>
+            <a href="/dashboard/categories/{{ $product->code }}/edit" class="btn p-1 btn-primary d-flex">
+                <span class="material-symbols-outlined">edit</span>
             </a>
         </div>
-</div> --}}
+    </div>
+    @endforeach
+</div>
+
+<x-paginate :paginateContent="$data"></x-paginate>
 @endsection
 
 @section('scripts')

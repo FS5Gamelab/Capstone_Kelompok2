@@ -63,8 +63,8 @@ class ProductController extends Controller
         Product::create($validateData);
         return redirect()->route('products.index')->with(
             'response',[
-                'status' => 'success',  
-                'messages' => 'Product created successfully'
+                'type' => 'success',  
+                'message' => 'Product created successfully'
             ]);
     }
 

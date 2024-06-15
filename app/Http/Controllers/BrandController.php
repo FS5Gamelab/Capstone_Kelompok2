@@ -57,8 +57,8 @@ class BrandController extends Controller
         
         return redirect()->route('brands.index')->with(
             'response', [
-                'status' => 'success', 
-                'messages' => 'Brand created successfully'
+                'type' => 'success', 
+                'message' => 'Brand created successfully'
             ]);
     }
 
@@ -68,7 +68,7 @@ class BrandController extends Controller
     public function show(Brand $brand)
     {
         // $brands = Brand::find($brand->id);
-        return view('dashboard.brand.__show', [
+        return view('dashboard.brand.show', [
             "title" => "Detail Brand", 
             "brand" => $brand
         ]);
@@ -111,8 +111,8 @@ class BrandController extends Controller
         $brand->update($validateData);
         return redirect()->route('brands.index')->with(
             'response',[
-                'status' => 'success', 
-                'messages' => 'Brand updated successfully'
+                'type' => 'success', 
+                'message' => 'Brand updated successfully'
             ]);
     }
 
@@ -128,8 +128,8 @@ class BrandController extends Controller
         $brand->delete();
         return redirect()->route('brands.index')->with(
             'response',[
-                'status' => 'success', 
-                'messages' => 'Brand deleted successfully'
+                'type' => 'success', 
+                'message' => 'Brand deleted successfully'
             ]);
     }
 }
