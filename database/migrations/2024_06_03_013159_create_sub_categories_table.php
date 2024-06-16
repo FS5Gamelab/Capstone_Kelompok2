@@ -16,12 +16,10 @@ return new class extends Migration
             $table->string('code');
             $table->string('name');
             $table->string('description');
-            $table->unsignedBigInteger('category_id');
-            $table->timestamp('archived_at')->nullable();
-            $table->timestamp('deleted_at')->nullable();
+            $table->softDeletes();
             $table->timestamps();
 
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->foreignId('category_id')->constrained()->onDelete('cascade');
         });
     }
 

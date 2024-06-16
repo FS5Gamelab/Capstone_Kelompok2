@@ -17,12 +17,19 @@ return new class extends Migration
             $table->enum('type', ['fixed', 'percentage']);
             $table->json('rules');
             $table->integer('availability');
-            $table->boolean('is_global');
+            $table->enum('applied_to', ['product', 'sub_category', 'category', 'brand', 'global']);
             $table->dateTime('started_at');
             $table->dateTime('expired_at');
-            $table->timestamp('archived_at')->nullable();
             $table->softDeletes();
             $table->timestamps();
+            
+            /**
+             * Hanya satu relasi yang diisi, berdasarkan 'applied_to'. Dan jika bernilai global, semua menjadi NULL.
+             */
+            $table->foreignId('product_id')->unique()->nullable()->constrained()->onDelete('cascade');
+            $table->foreignId('sub_category_id')->unique()->nullable()->constrained()->onDelete('cascade');
+            $table->foreignId('category_id')->unique()->nullable()->constrained()->onDelete('cascade');
+            $table->foreignId('brand_id')->unique()->nullable()->constrained()->onDelete('cascade');
         });
     }
 

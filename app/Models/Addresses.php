@@ -17,7 +17,6 @@ class Addresses extends Model
         'labels',
         'details',
         'location',
-        'archived_at',
         'deleted_at',
     ];
 }

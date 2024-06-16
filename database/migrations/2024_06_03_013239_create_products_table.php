@@ -19,19 +19,21 @@ return new class extends Migration
             $table->json('size');
             $table->integer('stock');
             $table->integer('price');
-            $table->string('status');
-            $table->string('image');
-            $table->unsignedBigInteger('category_id');
-            $table->unsignedBigInteger('brand_id');
-            $table->unsignedBigInteger('discount_id')->nullable();
-            $table->timestamp('expired_at');
-            $table->timestamp('archived_at')->nullable();
+            $table->boolean('pre_order')->default(false);
+            $table->string('image')->nullable();
+            $table->timestamp('expired_at')->nullable();
             $table->softDeletes();
             $table->timestamps();
             
-            $table->foreign('category_id')->references('id')->on('sub_categories')->onDelete('cascade');
-            $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');
-            $table->foreign('discount_id')->references('id')->on('discounts')->onDelete('cascade');
+            /**
+             * Gunakan 'set null' untuk menerapkan perilaku:
+             * - Data pada tabel ini tidak akan hilang ketika Data yang dirujuk oleh 'constrained' dihapus.
+             * 
+             * Gunakan 'cascade' untuk menerapkan perilaku:
+             * - Data pada tabel ini akan ikut hilang ketika Data yang dirujuk oleh 'constrained' dihapus.
+             */
+            $table->foreignId('category_id')->nullable()->constrained('sub_categories')->onDelete('cascade');
+            $table->foreignId('brand_id')->nullable()->constrained()->onDelete('cascade');
         });
     }
 

@@ -2,10 +2,12 @@
 
 namespace Database\Seeders;
 
+use App\Models\Brand;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Category;
 use App\Models\Discount;
+use App\Models\Product;
 use App\Models\SubCategory;
 use Illuminate\Database\Seeder;
 
@@ -23,8 +25,10 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
+        // Brand::factory(50)->create();
         // Category::factory(100)->create();
-        // Discount::factory(10)->create();
-        SubCategory::factory(100)->create();
+        SubCategory::factory(1000)->create();
+        // Product::factory(500)->create();
+        // Discount::factory(500)->create();
     }
 }

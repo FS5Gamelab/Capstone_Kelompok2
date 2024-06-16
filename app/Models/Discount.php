@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Discount extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'name',
@@ -18,9 +19,7 @@ class Discount extends Model
         'availability',
         'is_global',
         'started_at',
-        'expired_at',
-        'archived_at',
-        'deleted_at',
+        'expired_at'
     ];
 
     protected $table = 'discounts';
@@ -31,4 +30,8 @@ class Discount extends Model
        'archived_at' => 'datetime',
        'deleted_at' => 'datetime',
     ];
+
+    public function product(){
+        return $this->belongsTo(Product::class);
+    }
 }

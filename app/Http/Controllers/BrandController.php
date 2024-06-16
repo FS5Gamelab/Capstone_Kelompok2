@@ -80,7 +80,7 @@ class BrandController extends Controller
     public function edit(Brand $brand)
     {
         // $brands = Brand::find($brand->id);
-        return view('dashboard.brand.__edit', [
+        return view('dashboard.brand.edit', [
             "title" => "Edit Brand",
             "brand" => $brand
         ]);

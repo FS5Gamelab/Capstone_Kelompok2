@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
-use App\Models\SubCategory;
+use Carbon\Carbon;
 use App\Models\Brand;
+use App\Models\Product;
 use App\Models\Discount;
+use App\Models\SubCategory;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
+use App\Models\Category;
 
 class ProductController extends Controller
 {
@@ -32,14 +34,11 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $subcategories = SubCategory::all();
-        $brands = Brand::all();
-        $discounts = Discount::all();
         return view('dashboard.products.create', [
             'title' => 'Create Product',
-            'subcategories' => $subcategories,
-            'brands' => $brands,
-            'discounts' => $discounts
+            'categories' => Category::with('subCategories')->orderBy('id', 'desc')->get(),
+            'brands' => Brand::all(),
+            'discounts' => Discount::all()
         ]);
     }
 
@@ -48,7 +47,6 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
 {
-    // dd($request->validated());
     $validatedData = $request->validated();
 
     $size = json_encode([
@@ -69,7 +67,8 @@ class ProductController extends Controller
 
     $validatedData['size'] = $size;
     $validatedData['code'] = 'PDR' . Str::random(6);
-
+    $validatedData['brand_id'] = Brand::where('code', $validatedData['brand_id'])->first()->id;
+    $validatedData['category_id'] = SubCategory::where('code', $validatedData['category_id'])->first()->id;
     Product::create($validatedData);
 
     return redirect()->route('items.index')->with(
@@ -86,8 +85,6 @@ class ProductController extends Controller
      */
     public function show(Product $item)
     {
-        // dd($products->id);
-        // $products = Product::findOrFail($product->id);
         $size = json_decode($item->size, true);
         return view('dashboard.products.show', [
             'title' => 'Show Product',
@@ -101,18 +98,13 @@ class ProductController extends Controller
      */
     public function edit(Product $item)
     {
-        $subcategories = SubCategory::all();
-        $brands = Brand::all();
-        $discounts = Discount::all();
-        $size = json_decode($item->size, true);
-        // $products = Product::find($product->id);
-        return view('dashboard.products.__edit', [
+        return view('dashboard.products.edit', [
             'title' => 'Edit Product',
             'product' => $item,
-            'size' => $size,
-            'subcategories' => $subcategories,
-            'brands' => $brands,
-            'discounts' => $discounts
+            'size' => json_decode($item->size, true),
+            'categories' => Category::with('subCategories')->orderBy('id', 'desc')->get(),
+            'brands' => Brand::all(),
+            'discounts' => Discount::all()
         ]);
     }
 
@@ -121,7 +113,6 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $item)
     {
-        // dd($request->validated());
         $validateData = $request->validated();
 
         $size = json_encode([
@@ -143,6 +134,8 @@ class ProductController extends Controller
         }
 
         $validateData['size'] = $size;
+        $validateData['brand_id'] = Brand::where('code', $validateData['brand_id'])->first()->id;
+        $validateData['category_id'] = SubCategory::where('code', $validateData['category_id'])->first()->id;
 
         $item->update($validateData);
         return redirect()->route('items.index')->with(

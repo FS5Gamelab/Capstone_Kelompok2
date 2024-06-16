@@ -10,10 +10,10 @@
         <div class="col text-truncate">{{ $item->name }}</div>
         <div class="col-2 d-none d-sm-block col-md-2 text-center text-truncate">{{ $item->stock }}</div>
         <div class="col-auto d-flex gap-2">
-            <a href="/{{ Request::path()."/".$item->id }}" class="btn p-1 btn-secondary d-flex">
+            <a href="/{{ Request::path()."/".$item->code }}" class="btn p-1 btn-secondary d-flex">
                 <span class="material-symbols-outlined">visibility</span>
             </a>
-            <a href="/{{ Request::path()."/".$item->id }}/edit" class="btn p-1 btn-primary d-flex">
+            <a href="/{{ Request::path()."/".$item->code }}/edit" class="btn p-1 btn-primary d-flex">
                 <span class="material-symbols-outlined">edit</span>
             </a>
         </div>

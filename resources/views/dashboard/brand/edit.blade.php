@@ -3,7 +3,7 @@
 @section('contents')
 <div class="content container-fluid h-100 d-flex flex-column overflow-auto">
     <div class="row justify-content-center py-2">
-        <form class="col-6 py-2 rounded bg-light" method="POST" action="{{ route('brands.update', $brand->id) }}" enctype="multipart/form-data">
+        <form class="col-6 py-2 rounded bg-light" method="POST" action="{{ route('brands.update', $brand->code) }}" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <fieldset>
@@ -23,19 +23,16 @@
                 </div>
     
                 <div class="mb-3">
-                    <label for="brandImage" class="form-label">Image</label>
-                    <input type="file" class="form-control" name="image" id="brandImage" onchange="previewImage(event)">
+                    <div id="imagePreview" class="mb-3 text-center">
+                        @if($brand->image)
+                                <img src="{{ asset('storage/Brands/'.$brand->image) }}" class="border" height="160px" alt="{{ $brand->name }}">
+                        @endif
+                    </div>
+                    <label for="productImage" class="form-label">Image</label>
+                    <input type="file" class="form-control" name="image" id="productImage" onchange="previewImage(event)">
                     @error('image')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
-                </div>
-    
-                <div id="imagePreview" class="mb-3">
-                    @if ($brand->image)
-                        <img src="{{ asset('storage/Brands/' . $brand->image) }}" class="img-fluid" alt="{{ $brand->name }}">
-                        @else
-                        
-                    @endif
                 </div>
                 
                 <div class="d-flex justify-content-center">
@@ -48,15 +45,12 @@
 @endsection
 
 @section('scripts')
-<script src="/assets/js/plugins/chartjs.min.js"></script>
-<script src="/assets/js/script.js"></script>
-
 <script>
     function previewImage(event) {
         var reader = new FileReader();
         reader.onload = function() {
             var output = document.getElementById('imagePreview');
-            output.innerHTML = '<img src="' + reader.result + '" class="img-fluid" alt="Brand Image">';
+            output.innerHTML = '<img src="' + reader.result + '" class="border" height="160px" alt="Product Image">';
         }
         reader.readAsDataURL(event.target.files[0]);
     }

@@ -16,8 +16,8 @@ class Category extends Model
         'description'
     ];
 
-    public function SubCategory(){
-        return $this->hasMany(SubCategory::class, 'category_id');
+    public function subCategories(){
+        return $this->hasMany(SubCategory::class);
     }
 
     public function getRouteKeyName()

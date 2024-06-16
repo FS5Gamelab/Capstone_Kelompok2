@@ -72,7 +72,7 @@ class SubCategoryController extends Controller
     {
         $category = Category::all();
         // $subCategory = SubCategory::find($subcategory->id);
-        return view('dashboard.subcategory.__edit', [
+        return view('dashboard.subcategory.edit', [
             "title" => "Edit Sub-Category", 
             'subcategory' => $sub_category, 
             'categories' => $category

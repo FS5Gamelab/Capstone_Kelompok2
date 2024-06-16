@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'code',
@@ -16,25 +17,22 @@ class Product extends Model
         'size',
         'stock',
         'price',
-        'status',
+        'pre_order',
         'image',
         'category_id',
         'brand_id',
         'discount_id',
-        'expired_at',
-        'archived_at',
-        'deleted_at',
+        'expired_at'
     ];
 
     protected $casts = [
         'size' => 'array',
-        'expired_at' => 'datetime',
-        'archived_at' => 'datetime',
+        'expired_at' => 'datetime'
     ];
 
-    public function category()
+    public function subCategory()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(SubCategory::class, 'category_id');
     }
 
     public function brand()
@@ -42,8 +40,8 @@ class Product extends Model
         return $this->belongsTo(Brand::class);
     }
 
-    public function discount()
+    public function getRouteKeyName()
     {
-        return $this->belongsTo(Discount::class);
+        return 'code';
     }
 }

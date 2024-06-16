@@ -14,14 +14,12 @@ class SubCategory extends Model
         'category_id',
         'code',
         'name',
-        'description',
-        'archived_at',
-        'deleted_at',
+        'description'
     ];
 
-    public function Category()
+    public function category()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class, 'category_id');
     }
 
     public function Product()

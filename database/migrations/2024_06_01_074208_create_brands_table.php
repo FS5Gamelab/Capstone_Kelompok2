@@ -17,8 +17,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('description');
             $table->string('image')->nullable();
-            $table->timestamp('deleted_at')->nullable();
-            $table->timestamp('archived_at')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

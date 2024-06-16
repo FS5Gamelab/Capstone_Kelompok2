@@ -74,7 +74,7 @@ class CategoryController extends Controller
     public function edit(Category $category)
     {
         // $category = Category::findOrFail($id);
-        return view('dashboard.category.__edit', [
+        return view('dashboard.category.edit', [
             'title' => 'Edit Category',
             'category' => $category
         ]);

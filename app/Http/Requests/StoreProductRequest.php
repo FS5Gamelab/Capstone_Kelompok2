@@ -30,11 +30,10 @@ class StoreProductRequest extends FormRequest
             'length' => 'required|numeric',
             'stock' => 'required|integer',
             'price' => 'required|integer',
-            'status' => 'required|string',
+            'pre_order' => 'required|boolean',
             'image' => 'nullable|image|mimes::jpeg,png,jpg,gif,svg|max:2048',
-            'category_id' => 'required|exists:sub_categories,id',
-            'brand_id' => 'required|exists:brands,id',
-            'discount_id' => 'nullable|exists:discounts,id',
+            'category_id' => 'required|exists:sub_categories,code',
+            'brand_id' => 'required|exists:brands,code',
             'expired_at' => 'nullable|date',
         ];
     }
@@ -56,7 +55,7 @@ class StoreProductRequest extends FormRequest
         'stock.integer' => 'Stock must be an integer',
         'price.required' => 'Price is required',
         'price.integer' => 'Price must be an integer',
-        'status.required' => 'Status is required',
+        'pre_order.required' => 'Pre-Order is required',
         'image.image' => 'Image must be an image file',
         'image.max' => 'Image size must be less than 2048 kilobytes',
         'image.mimes' => 'Image must be a file of type: jpeg, png, jpg, gif, svg',
@@ -64,7 +63,6 @@ class StoreProductRequest extends FormRequest
         'category_id.exists' => 'Selected category does not exist',
         'brand_id.required' => 'Brand is required',
         'brand_id.exists' => 'Selected brand does not exist',
-        'discount_id.exists' => 'Selected discount does not exist',
         'expired_at.date' => 'Expired date must be a valid date',
     ];
 }
