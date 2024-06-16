@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Professional Store</title>
-    <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
+    <title>Mega Mart</title>
+    <link rel="icon" href="{{ asset('assets/img/logo-capstone1.png') }}" />
 
     <!-- Bootstrap@5.3.3 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -215,8 +215,8 @@
                         </li>
                     </ul>
                     <div class="d-flex">
-                        <a href="#" class="btn btn-login btn-sm">Login</a>
-                        <a href="#" class="btn btn-signup btn-sm">Sign Up</a>
+                        <a href="{{ route('login') }}" class="btn btn-login btn-sm">Login</a>
+                        <a href="{{ route('register') }}" class="btn btn-signup btn-sm">Sign Up</a>
                     </div>
                 </div>
             </div>
@@ -269,13 +269,7 @@
                         <input type="text" id="searchInput" class="form-control" placeholder="Search products...">
                     </div>
                 </div>
-                <div>
-                    <nav aria-label="Page navigation">
-                        <ul class="pagination justify-content-center" id="pagination">
-                            <!-- Pagination items will be dynamically added here -->
-                        </ul>
-                    </nav>
-                </div>
+
                 <div class="row" id="productContainer">
                     <!-- Product Cards -->
                     @for ($i = 1; $i <= 12; $i++)
@@ -292,6 +286,13 @@
                     @endfor
                 </div>
             </div>
+            <div>
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination justify-content-center" id="pagination">
+                            <!-- Pagination items will be dynamically added here -->
+                        </ul>
+                    </nav>
+                </div>
         </section>
 
         <!-- About Section -->
