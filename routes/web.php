@@ -21,13 +21,28 @@ Route::get('dashboard', function(){
 })->middleware('auth');
 
 Route::middleware('auth')->group(function () {
-    Route::resource('dashboard/categories', CategoryController::class);
-    Route::resource('dashboard/products', ProductController::class);
-    Route::resource('dashboard/discounts', DiscountController::class);
-    Route::resource('dashboard/brands', BrandController::class);
-    Route::resource('dashboard/orders', OrderController::class);
-    Route::resource('dashboard/shipments', ShipmentController::class);
-    Route::resource('dashboard/users', UserController::class);
+
+    // Dashboard
+    Route::prefix('dashboard')->group(function(){
+
+        // Product Contents
+        Route::prefix('products')->group(function(){
+            Route::get('/', function() {
+                return redirect('/dashboard/products/items');
+            });
+
+            Route::resource('categories', CategoryController::class);
+            Route::resource('sub-categories', SubCategoryController::class);
+            Route::resource('discounts', DiscountController::class);
+            Route::resource('items', ProductController::class);
+            Route::resource('brands', BrandController::class);
+        });
+
+
+        Route::resource('orders', OrderController::class);
+        Route::resource('shipments', ShipmentController::class);
+        Route::resource('users', UserController::class);
+    });
 });
 
 require __DIR__.'/auth.php';

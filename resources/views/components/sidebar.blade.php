@@ -29,30 +29,7 @@
                     </div>
                 </div>
                 <div class="container-fluid flex-fill overflow-hidden">
-                    <nav class="py-2 h-100 d-flex flex-column gap-2 overflow-y-auto overflow-x-hidden">
-                        <x-snav active="{{ Request::is('dashboard') }}" href="/dashboard" icon="dashboard">Dashboard</x-snav>
-                        <x-snav active="{{ Request::is('dashboard/sales') }}" href="#" icon="finance">Sales</x-snav>
-                        <x-snav active="{{ Request::is('dashboard/orders') }}" href="#" icon="list_alt">Orders</x-snav>
-                        <x-snav active="{{ Request::is('dashboard/transaction') }}" href="#" icon="receipt_long">Transactions</x-snav>
-                        
-                        <div class="container-fluid mt-3 mb-1 bg-light">
-                            Products
-                        </div>
-                        <x-snav active="{{ Request::is('dashboard/products') }}" href="{{ route('products.index') }}" icon="package_2">Product</x-snav>
-                        <x-snav active="{{ Request::is('dashboard/brands') }}" href="#" icon="apartment">Brand</x-snav>
-                        <x-snav active="{{ Request::is('dashboard/categories*') }}" href="{{ route('categories.index') }}" icon="category">Category</x-snav>
-                        <x-snav active="{{ Request::is('dashboard/discounts') }}" href="#" icon="sell">Discount</x-snav>
-                        <x-snav active="{{ Request::is('dashboard/coupons') }}" href="#" icon="confirmation_number">Coupon</x-snav>
-
-                        <div class="container-fluid mt-3 mb-1 bg-light">Featured</div>
-                        <x-snav active="{{ Request::is('dashboard/offers') }}" href="#" icon="campaign">Offers</x-snav>
-                        <x-snav active="{{ Request::is('dashboard/news') }}" href="#" icon="newspaper">News</x-snav>
-                        <x-snav active="{{ Request::is('dashboard/events') }}" href="#" icon="event">Events</x-snav>
-
-                        <div class="container-fluid mt-3 mb-1 bg-light">Manage</div>
-                        <x-snav active="{{ Request::is('dashboard/users') }}" href="#" icon="person">Users</x-snav>
-                        <x-snav active="{{ Request::is('dashboard/employees') }}" href="#" icon="badge">Employees</x-snav>
-                    </nav>
+                    <x-snavbar></x-snavbar>
                 </div>
                 <div class="container-fluid py-3 border-top border-secondary">
                     <div class="nav-item mb-2">
@@ -91,30 +68,7 @@
             </a>
         </div>
         <div class="container-fluid flex-fill overflow-hidden">
-            <nav class="py-2 h-100 d-flex flex-column gap-2 overflow-y-auto overflow-x-hidden">
-                <x-snav active="{{ Request::is('dashboard') }}" href="/dashboard" icon="dashboard">Dashboard</x-snav>
-                <x-snav active="{{ Request::is('dashboard/sales') }}" href="#" icon="finance">Sales</x-snav>
-                <x-snav active="{{ Request::is('dashboard/orders') }}" href="#" icon="list_alt">Orders</x-snav>
-                <x-snav active="{{ Request::is('dashboard/transaction') }}" href="#" icon="receipt_long">Transactions</x-snav>
-                
-                <div class="container-fluid mt-3 mb-1 bg-light">
-                    Products
-                </div>
-                <x-snav active="{{ Request::is('dashboard/products') }}" href="{{ route('products.index') }}" icon="package_2">Product</x-snav>
-                <x-snav active="{{ Request::is('dashboard/brands') }}" href="{{ route('brands.index') }}" icon="apartment">Brand</x-snav>
-                <x-snav active="{{ Request::is('dashboard/categories*') }}" href="{{ route('categories.index') }}" icon="category">Category</x-snav>
-                <x-snav active="{{ Request::is('dashboard/discounts') }}" href="#" icon="sell">Discount</x-snav>
-                <x-snav active="{{ Request::is('dashboard/coupons') }}" href="#" icon="confirmation_number">Coupon</x-snav>
-
-                <div class="container-fluid mt-3 mb-1 bg-light">Featured</div>
-                <x-snav active="{{ Request::is('dashboard/offers') }}" href="#" icon="campaign">Offers</x-snav>
-                <x-snav active="{{ Request::is('dashboard/news') }}" href="#" icon="newspaper">News</x-snav>
-                <x-snav active="{{ Request::is('dashboard/events') }}" href="#" icon="event">Events</x-snav>
-
-                <div class="container-fluid mt-3 mb-1 bg-light">Manage</div>
-                <x-snav active="{{ Request::is('dashboard/users') }}" href="#" icon="person">Users</x-snav>
-                <x-snav active="{{ Request::is('dashboard/employees') }}" href="#" icon="badge">Employees</x-snav>
-            </nav>
+            <x-snavbar></x-snavbar>
         </div>
         <div class="container-fluid py-3 border-top border-secondary">
             <div class="nav-item mb-2">

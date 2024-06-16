@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('contents')
-<x-toolbar></x-toolbar>
+<x-toolbar :route="false"></x-toolbar>
 
 <div class="container-fluid py-3 flex-fill overflow-y-auto">
     @foreach ($data as $item)

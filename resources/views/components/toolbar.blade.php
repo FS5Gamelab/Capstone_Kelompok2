@@ -13,9 +13,20 @@
                 </div>
             </form>
         </div>
-        <div class="col-auto col-sm-2 col-md-4 col-lg-6">
-            <nav class="d-flex">
-                <div class="nav-item ms-auto">
+        <div class="col-auto col-sm-2 col-md-4 col-lg-6 d-flex">
+            <nav class="d-flex gap-2 ps-auto ms-auto">
+                @if ($route)
+                <form action="{{ $route }}" method="post">
+                    @csrf
+                    @method('delete')
+                    <div class="nav-item ms-auto">
+                        <button class="btn p-1 btn-danger d-flex" type="submit">
+                            <span class="material-symbols-outlined">delete</span>
+                        </button>
+                    </div>
+                </form>
+                @endif
+                <div class="nav-item">
                     <a href="/{{ Request()->path() }}/create" class="btn p-1 btn-success d-flex">
                         <span class="material-symbols-outlined">add</span>
                     </a>

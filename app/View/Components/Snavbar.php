@@ -6,15 +6,14 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Toolbar extends Component
+class Snavbar extends Component
 {
-    public $route;
     /**
      * Create a new component instance.
      */
-    public function __construct($route)
+    public function __construct()
     {
-        $this->route = $route;
+        //
     }
 
     /**
@@ -22,6 +21,6 @@ class Toolbar extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.toolbar');
+        return view('components.snavbar');
     }
 }

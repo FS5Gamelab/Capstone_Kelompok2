@@ -57,12 +57,12 @@ class SubCategoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(SubCategory $subcategory)
+    public function show(SubCategory $subCategory)
     {
         // $subcategory = SubCategory::find($subcategory->id);
-        return view('dashboard.subcategory.__show', [
+        return view('dashboard.subcategory.show', [
             "title" => "Show Sub-Category",
-            'subcategory' => $subcategory
+            'data' => $subCategory
         ]);
     }
 
