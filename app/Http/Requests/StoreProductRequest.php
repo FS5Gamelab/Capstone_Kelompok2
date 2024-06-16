@@ -24,7 +24,10 @@ class StoreProductRequest extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'description' => 'required|string',
-            'size' => 'required|json',
+            'width' => 'required|numeric',
+            'height' => 'required|numeric',
+            'weight' => 'required|numeric',
+            'length' => 'required|numeric',
             'stock' => 'required|integer',
             'price' => 'required|integer',
             'status' => 'required|string',
@@ -37,22 +40,33 @@ class StoreProductRequest extends FormRequest
     }
 
     public function messages(): array
-    {
-        return [
-            'name.required' => 'Name is required',
-            'description.required' => 'Description is required',
-            'size.required' => 'Size is required',
-            'stock.required' => 'Stock is required',
-            'stock.integer' => 'Stock must be an integer',
-            'price.required' => 'Price is required',
-            'status.required' => 'Status is required',
-            'image.required' => 'Image is required',
-            'image.max' => 'Image must be less than 2048 characters',
-            'image.mimes' => 'Image must be jpeg,png,jpg,gif,svg',
-            'category_id.required' => 'Category is required',
-            'brand_id.required' => 'Brand is required',
-            'discount_id.nullable' => 'Discount is required',
-            'expired_at.nullable' => 'Expired date is required',
-        ];
-    }
+{
+    return [
+        'name.required' => 'Name is required',
+        'description.required' => 'Description is required',
+        'width.required' => 'Width is required',
+        'width.numeric' => 'Width must be a number',
+        'height.required' => 'Height is required',
+        'height.numeric' => 'Height must be a number',
+        'weight.required' => 'Weight is required',
+        'weight.numeric' => 'Weight must be a number',
+        'length.required' => 'Length is required',
+        'length.numeric' => 'Length must be a number',
+        'stock.required' => 'Stock is required',
+        'stock.integer' => 'Stock must be an integer',
+        'price.required' => 'Price is required',
+        'price.integer' => 'Price must be an integer',
+        'status.required' => 'Status is required',
+        'image.image' => 'Image must be an image file',
+        'image.max' => 'Image size must be less than 2048 kilobytes',
+        'image.mimes' => 'Image must be a file of type: jpeg, png, jpg, gif, svg',
+        'category_id.required' => 'Category is required',
+        'category_id.exists' => 'Selected category does not exist',
+        'brand_id.required' => 'Brand is required',
+        'brand_id.exists' => 'Selected brand does not exist',
+        'discount_id.exists' => 'Selected discount does not exist',
+        'expired_at.date' => 'Expired date must be a valid date',
+    ];
+}
+
 }

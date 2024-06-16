@@ -1,6 +1,6 @@
 @extends('layouts.dashboard')
 
-@section('content')
+@section('contents')
 <div class="content container-fluid h-100 d-flex flex-column overflow-auto">
     <div class="row justify-content-center py-2">
         <form class="col-6 py-2 rounded bg-light" method="POST" action="{{ route('brands.update', $brand->id) }}" enctype="multipart/form-data">

@@ -47,52 +47,69 @@ class ProductController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(StoreProductRequest $request)
-    {
-        // dd($request->validated());
-        $code = 'PDR' . Str::random(6);
-        $validateData = $request->validated();
-        if($request->hasFile('image')) {
-            $image = $request->file('image');
-            $imageName = time() .'.'. uniqid() .'.'. $image->getClientOriginalExtension();
-            $image->storeAs('public/Products/', $imageName);
-            $validateData['image'] = $imageName;
-        } else {
-            $validateData['image'] = null;
-        }
-        $validateData['code'] = $code;
-        Product::create($validateData);
-        return redirect()->route('products.index')->with(
-            'response',[
-                'type' => 'success',  
-                'message' => 'Product created successfully'
-            ]);
+{
+    // dd($request->validated());
+    $validatedData = $request->validated();
+
+    $size = json_encode([
+        'width' => $request->width,
+        'height' => $request->height,
+        'weight' => $request->weight,
+        'length' => $request->length
+    ]);
+
+    if ($request->hasFile('image')) {
+        $image = $request->file('image');
+        $imageName = time() . '.' . uniqid() . '.' . $image->getClientOriginalExtension();
+        $image->storeAs('public/Products/', $imageName);
+        $validatedData['image'] = $imageName;
+    } else {
+        $validatedData['image'] = null;
     }
+
+    $validatedData['size'] = $size;
+    $validatedData['code'] = 'PDR' . Str::random(6);
+
+    Product::create($validatedData);
+
+    return redirect()->route('items.index')->with(
+        'response', [
+            'type' => 'success',
+            'message' => 'Product created successfully'
+        ]
+    );
+}
+
 
     /**
      * Display the specified resource.
      */
-    public function show(Product $product)
+    public function show(Product $item)
     {
         // dd($products->id);
         // $products = Product::findOrFail($product->id);
-        return view('dashboard.products.__show', [
+        $size = json_decode($item->size, true);
+        return view('dashboard.products.show', [
             'title' => 'Show Product',
-            'product' => $product
+            'data' => $item,
+            'size' => $size
         ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Product $product)
+    public function edit(Product $item)
     {
         $subcategories = SubCategory::all();
         $brands = Brand::all();
         $discounts = Discount::all();
+        $size = json_decode($item->size, true);
         // $products = Product::find($product->id);
         return view('dashboard.products.__edit', [
             'title' => 'Edit Product',
-            'product' => $product,
+            'product' => $item,
+            'size' => $size,
             'subcategories' => $subcategories,
             'brands' => $brands,
             'discounts' => $discounts
@@ -102,38 +119,48 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateProductRequest $request, Product $product)
+    public function update(UpdateProductRequest $request, Product $item)
     {
         // dd($request->validated());
         $validateData = $request->validated();
-        // $product = Product::find($product->id);
+
+        $size = json_encode([
+            'width' => $request->width,
+            'height' => $request->height,
+            'weight' => $request->weight,
+            'length' => $request->length
+        ]);
+        
         if($request->hasFile('image')) {
-            $oldImage = $product->image;
+            $oldImage = $item->image;
             Storage::delete('public/Products/'.$oldImage);
             $image = $request->file('image');
             $imageName = time() .'.'. uniqid() .'.'. $image->getClientOriginalExtension();
             $image->storeAs('public/Products/', $imageName);
             $validateData['image'] = $imageName;
         } else {
-            $validateData['image'] = $product->image;
+            $validateData['image'] = $item->image;
         }
-        $product->update($validateData);
-        return redirect()->route('products.index')->with(
+
+        $validateData['size'] = $size;
+
+        $item->update($validateData);
+        return redirect()->route('items.index')->with(
             'response',[
-                'status' => 'success',  
-                'messages' => 'Product updated successfully'
+                'type' => 'success',  
+                'message' => 'Product updated successfully'
             ]);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Product $product)
+    public function destroy(Product $item)
     {
         // $product = Product::find($product->id);
-        $oldImage = $product->image;
+        $oldImage = $item->image;
         Storage::delete('public/Products/'.$oldImage);
-        $product->delete();
+        $item->delete();
         return redirect()->route('products.index')->with(
             'response',[
                 'status' => 'success',  
