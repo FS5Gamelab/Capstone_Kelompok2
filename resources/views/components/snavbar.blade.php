@@ -10,7 +10,7 @@
     <x-snav active="{{ Request::is('dashboard/products/items') }}" href="{{ route('items.index') }}" icon="package_2">Product</x-snav>
     <x-snav active="{{ Request::is('dashboard/products/brands') }}" href="{{ route('brands.index') }}" icon="apartment">Brand</x-snav>
     <x-snav active="{{ Request::is('dashboard/products/categories*') }}" href="{{ route('categories.index') }}" icon="category">Category</x-snav>
-    <x-snav active="{{ Request::is('dashboard/products/sub-categories*') }}" href="{{ route('sub-categories.index') }}" icon="category">Sub-Category</x-snav>
+    <x-snav active="{{ Request::is('dashboard/products/sub-categories*') }}" href="{{ route('sub-categories.index') }}" icon="list">Sub-Category</x-snav>
     <x-snav active="{{ Request::is('dashboard/products/discounts') }}" href="{{ route('discounts.index') }}" icon="sell">Discount</x-snav>
     <x-snav active="{{ Request::is('dashboard/products/coupons') }}" href="#" icon="confirmation_number">Coupon</x-snav>
 

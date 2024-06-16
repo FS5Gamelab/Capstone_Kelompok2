@@ -27,10 +27,9 @@ class SubCategoryController extends Controller
      */
     public function create()
     {
-        $category = Category::all();
         return view('dashboard.subcategory.create', [
-            "title" => "Create Sub-Category", 
-            'categories' => $category
+            "title" => "Create Sub-Category",
+            'categories' => Category::all()
         ]);
     }
 
@@ -47,10 +46,10 @@ class SubCategoryController extends Controller
             'category_id' => $request->category_id
         ]);
 
-        return redirect()->route('subcategory.index')->with(
+        return redirect()->route('sub-categories.index')->with(
             'response', [
-                'status' => 'success', 
-                'messages' => 'Sub-Category created successfully'
+                'type' => 'success', 
+                'message' => 'Sub-Category created successfully'
             ]);
     }
 
