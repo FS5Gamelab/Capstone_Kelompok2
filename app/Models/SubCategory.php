@@ -19,12 +19,12 @@ class SubCategory extends Model
         'deleted_at',
     ];
 
-    public function category()
+    public function Category()
     {
         return $this->belongsTo(Category::class);
     }
 
-    public function products()
+    public function Product()
     {
         return $this->hasMany(Product::class);
     }

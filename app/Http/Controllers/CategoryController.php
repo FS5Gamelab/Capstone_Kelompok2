@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
+use App\Models\SubCategory;
 use Carbon\Carbon;
 
 class CategoryController extends Controller
@@ -61,7 +62,8 @@ class CategoryController extends Controller
     {
         return view('dashboard.category.show', [
             'title' => 'Category',
-            'data' => $category
+            'category' => $category,
+            'data' => SubCategory::where('category_id', $category->id)->orderBy('created_at', 'desc')->paginate(20)
         ]);
     }
 

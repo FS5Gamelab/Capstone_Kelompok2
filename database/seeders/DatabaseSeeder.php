@@ -6,6 +6,7 @@ use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Category;
 use App\Models\Discount;
+use App\Models\SubCategory;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -22,7 +23,8 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        Category::factory(100)->create();
+        // Category::factory(100)->create();
         // Discount::factory(10)->create();
+        SubCategory::factory(100)->create();
     }
 }

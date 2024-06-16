@@ -20,11 +20,10 @@ Route::get('dashboard', function(){
     ]);
 })->middleware('auth');
 
-Route::middleware('auth')->group(function () {  
+Route::middleware('auth')->group(function () {
     Route::resource('dashboard/categories', CategoryController::class);
     Route::resource('dashboard/products', ProductController::class);
     Route::resource('dashboard/discounts', DiscountController::class);
-    Route::resource('dashboard/subcategory', SubCategoryController::class);
     Route::resource('dashboard/brands', BrandController::class);
     Route::resource('dashboard/orders', OrderController::class);
     Route::resource('dashboard/shipments', ShipmentController::class);

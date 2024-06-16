@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,10 @@ class SubCategoryFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'code' => Carbon::now()->format('YmdHis') . mt_rand(100000, 999999),
+            'name' => $this->faker->sentence(mt_rand(2, 8)),
+            'description' => $this->faker->sentence(mt_rand(5, 10)),
+            'category_id' => $this->faker->numberBetween(1,10)
         ];
     }
 }
