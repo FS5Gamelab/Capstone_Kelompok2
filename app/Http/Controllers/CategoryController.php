@@ -71,9 +71,9 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit(Category $category)
     {
-        $category = Category::findOrFail($id);
+        // $category = Category::findOrFail($id);
         return view('dashboard.category.__edit', [
             'title' => 'Edit Category',
             'category' => $category
@@ -94,10 +94,10 @@ class CategoryController extends Controller
         'description' => $request->description
     ]);
 
-    return redirect()->route('category.index')->with(
+    return redirect()->route('categories.index')->with(
         'response', [
-            'status' => 'success', 
-            'messages' => 'Category updated successfully'
+            'type' => 'success', 
+            'message' => 'Category updated successfully'
         ]);
 }
 
@@ -109,10 +109,10 @@ class CategoryController extends Controller
     {
         $category->delete();
 
-        return redirect()->route('category.index')->with(
+        return redirect()->route('categories.index')->with(
             'response', [
-                'status' => 'success', 
-                'messages' => 'Category deleted successfully'
+                'type' => 'success', 
+                'message' => 'Category deleted successfully'
             ]);
     }
 }

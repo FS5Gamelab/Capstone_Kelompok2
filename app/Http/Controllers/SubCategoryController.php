@@ -56,25 +56,25 @@ class SubCategoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(SubCategory $subCategory)
+    public function show(SubCategory $sub_category)
     {
         // $subcategory = SubCategory::find($subcategory->id);
         return view('dashboard.subcategory.show', [
             "title" => "Show Sub-Category",
-            'data' => $subCategory
+            'data' => $sub_category
         ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(SubCategory $subcategory)
+    public function edit(SubCategory $sub_category)
     {
         $category = Category::all();
         // $subCategory = SubCategory::find($subcategory->id);
         return view('dashboard.subcategory.__edit', [
             "title" => "Edit Sub-Category", 
-            'subcategory' => $subcategory, 
+            'subcategory' => $sub_category, 
             'categories' => $category
         ]);
     }
@@ -82,11 +82,11 @@ class SubCategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateSubCategoryRequest $request, SubCategory $subcategory)
+    public function update(UpdateSubCategoryRequest $request, SubCategory $sub_category)
     {
         // dd($request->all());
         $code = Carbon::now()->format('YmdHis') . mt_rand(100000, 999999);
-        $subcategory->update([
+        $sub_category->update([
             'name' => $request->name,
             'code' => $code,
             'description' => $request->description,
@@ -103,9 +103,9 @@ class SubCategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(SubCategory $subcategory)
+    public function destroy(SubCategory $sub_category)
     {
-        $subcategory = SubCategory::find($subcategory->id);
+        $subcategory = SubCategory::find($sub_category->id);
         $subcategory->delete();
         return redirect()->route('subcategory.index')->with(
             'response', [

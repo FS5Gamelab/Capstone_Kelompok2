@@ -1,9 +1,9 @@
 @extends('layouts.dashboard')
 
-@section('content')
+@section('contents')
 <div class="content container-fluid h-100 d-flex flex-column overflow-auto">
     <div class="row justify-content-center py-2">
-        <form class="col-6 py-2 rounded bg-light" method="POST" action="{{ route('products.update', $product->id) }}" enctype="multipart/form-data">
+        <form class="col-6 py-2 rounded bg-light" method="POST" action="{{ route('items.update', $product->id) }}" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <fieldset>
@@ -15,34 +15,82 @@
                     @error('name')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
-                </div>  
-                  <div class="mb-3">
-                    <label for="productSize" class="form-label">Product Size</label>
-                    <input type="text" class="form-control" name="size" id="productSize" value="{{ $product->size }}">
-                    @error('size')
-                        <div class="text-danger">{{ $message }}</div>
-                    @enderror
+                    <div class="mb-3 container-fluid">
+                        <div class="row">
+                            <div class="col-6 col-md d-flex flex-column justify-content-center ps-2 pe-1">
+                                <label for="productLength" class="form-label">Length</label>
+                                <div class="input-group">
+                                    <input class="form-control text-end" name="length" id="productLength" type="number" step="0.01" value="{{ old('length', $size['length']) }}">
+                                    <div class="bg-dark-subtle d-flex align-items-center px-1 border rounded-end">m</div>
+                                </div>
+                                    {{-- @php
+                                        $product = $product->size;
+                                        $product = json_decode($product, true);
+                                        dd($product['length']);
+                                    @endphp --}}
+                                @error('length')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="col-6 col-md d-flex flex-column justify-content-center ps-2 pe-1">
+                                <label for="productWidth" class="form-label">Width</label>
+                                <div class="input-group">
+                                    <input class="form-control text-end" name="width" id="productWidth" type="number" step="0.01" value="{{ old('width', $size['width']) }}">
+                                    <div class="bg-dark-subtle d-flex align-items-center px-1 border rounded-end">m</div>
+                                </div>
+                                @error('width')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="col-6 col-md d-flex flex-column justify-content-center ps-2 pe-1">
+                                <label for="productHeight" class="form-label">Height</label>
+                                <div class="input-group">
+                                    <input class="form-control text-end" name="height" id="productHeight" type="number" step="0.01" value="{{ old('height', $size['height']) }}">
+                                    <div class="bg-dark-subtle d-flex align-items-center px-1 border rounded-end">m</div>
+                                </div>
+                                @error('height')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="col-6 col-md d-flex flex-column justify-content-center ps-2 pe-1">
+                                <label for="productWeight" class="form-label">Weight</label>
+                                <div class="input-group">
+                                    <input class="form-control text-end" name="weight" id="productWeight" type="number" step="0.01" value="{{ old('weight', $size['weight']) }}">
+                                    <div class="bg-dark-subtle d-flex align-items-center px-1 border rounded-end">kg</div>
+                                </div>
+                                @error('weight')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>            
+                    <div class="mb-3 container-fluid">
+                        <div class="row">
+                            <div class="col-6 col-md d-flex flex-column justify-content-center ps-2 pe-1">
+                                Stock
+                                <div class="input-group">
+                                    <input class="form-control text-end" name="stock" id="productStock" type="number" value="{{ old('stock', $product->stock) }}">
+                                </div>
+                                @error('stock')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="col-6 col-md d-flex flex-column justify-content-center ps-2 pe-1">
+                                Prices
+                                <div class="input-group">
+                                    <div class="bg-dark-subtle d-flex align-items-center px-1 border rounded-start">Rp</div>
+                                    <input class="form-control text-end" name="price" id="productPrice" type="number" value="{{ old('price', $product->price) }}">
+                                </div>
+                                @error('price')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            
-                 <div class="mb-3">
-                    <label for="productStock" class="form-label">Product Stock</label>
-                    <input type="number" class="form-control" name="stock" id="productStock" value="{{ $product->stock }}">
-                    @error('stock')
-                        <div class="text-danger">{{ $message }}</div>
-                    @enderror
-                </div>
-            
-               <div class="mb-3">
-                    <label for="productPrice" class="form-label">Product Price</label>
-                    <input type="number" class="form-control" name="price" id="productPrice" value="{{ $product->price }}">
-                    @error('price')
-                        <div class="text-danger">{{ $message }}</div>
-                    @enderror
-                </div>
-
                 <div class="mb-3">
                     <label for="productStatus" class="form-label">Status</label>
-                    <input type="text" class="form-control" name="status" id="productStatus" value="{{ $product->status }}">
+                    <input type="text" class="form-control" name="status" id="productStatus" value="{{ old('status', $product->status) }}">
                     @error('status')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
@@ -62,7 +110,7 @@
                 </div>
                  <div class="mb-3">
                     <label for="productExpired" class="form-label">Expired</label>
-                    <input type="date" class="form-control" name="expired_at" id="productExpired" value="{{ old('expired_at', $product->expired_at) }}">
+                    <input type="date" class="form-control" name="expired_at" id="productExpired" value="{{ old('expired_at', $product->expired_at ? $product->expired_at->format('Y-m-d') : '') }}">
                     @error('expired_at')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
@@ -96,7 +144,7 @@
             
                 <div class="mb-3">
                     <label for="productDescription" class="form-label">Product Description</label>
-                    <textarea class="form-control" name="description" id="productDescription" rows="3">{{ $product->description }}</textarea>
+                    <textarea class="form-control" name="description" id="productDescription" rows="3">{{ old('description', $product->description) }}</textarea>
                     @error('description')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
@@ -106,17 +154,17 @@
                     <label for="productImage" class="form-label">Product Image</label>
                     <input type="file" class="form-control" name="image" id="productImage" onchange="previewImage(event)">
                     @error('image')
-                        <div class="text-danger">{{ $message }}</div>
+                    <div class="text-danger">{{ $message }}</div>
                     @enderror
+                    <div id="imagePreview" class="mb-3 text-center mt-2">
+                        @if($product->image)
+                            <img src="{{ asset('storage/Products/'.$product->image) }}" class="border" height="160px" alt="{{ $product->name }}">
+                            @else
+    
+                        @endif
+                    </div>
                 </div>
                 
-                <div id="imagePreview" class="mt-3">
-                    @if($product->image)
-                        <img src="{{ asset('storage/Products/'.$product->image) }}" class="img-fluid" alt="{{ $product->name }}">
-                        @else
-
-                    @endif
-                </div>
 
                 <div class="d-flex justify-content-center">
                     <button type="submit" class="btn btn-primary">Create</button>
@@ -133,7 +181,7 @@
         var reader = new FileReader();
         reader.onload = function(){
             var output = document.getElementById('imagePreview');
-            output.innerHTML = '<img src="' + reader.result + '" class="img-fluid" alt="Product Image">';
+            output.innerHTML = '<img src="' + reader.result + '" class="border" height="160px" alt="Product Image">';
         };
         reader.readAsDataURL(event.target.files[0]);
     }

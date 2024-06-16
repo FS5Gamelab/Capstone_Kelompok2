@@ -1,9 +1,9 @@
 @extends('layouts.dashboard')
 
-@section('content')
+@section('contents')
 <div class="content container-fluid h-100 d-flex flex-column">
     <div class="row justify-content-center py-2">
-        <form class="col-6 py-2 rounded bg-light" action="{{ route('subcategory.update', $subcategory->id) }}" method="POST">
+        <form class="col-6 py-2 rounded bg-light" action="{{ route('sub-categories.update', $subcategory->id) }}" method="POST">
             @csrf
             @method('PUT')
             <fieldset>
