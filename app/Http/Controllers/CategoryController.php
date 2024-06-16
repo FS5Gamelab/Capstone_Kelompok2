@@ -69,9 +69,9 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit(Category $category)
     {
-        $category = Category::findOrFail($id);
+        // $category = Category::findOrFail($id);
         return view('dashboard.category.__edit', [
             'title' => 'Edit Category',
             'category' => $category

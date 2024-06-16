@@ -70,7 +70,7 @@ class BrandController extends Controller
         // $brands = Brand::find($brand->id);
         return view('dashboard.brand.show', [
             "title" => "Detail Brand", 
-            "brand" => $brand
+            "data" => $brand
         ]);
     }
 

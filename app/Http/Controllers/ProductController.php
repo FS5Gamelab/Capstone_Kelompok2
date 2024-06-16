@@ -75,9 +75,9 @@ class ProductController extends Controller
     {
         // dd($products->id);
         // $products = Product::findOrFail($product->id);
-        return view('dashboard.products.__show', [
+        return view('dashboard.products.show', [
             'title' => 'Show Product',
-            'product' => $product
+            'data' => $product
         ]);
     }
 

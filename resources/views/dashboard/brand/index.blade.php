@@ -10,10 +10,10 @@
         <div class="col text-truncate">{{ $brand->name }}</div>
         <div class="col-2 d-none d-sm-block col-md-2 text-center text-truncate">999</div>
         <div class="col-auto d-flex gap-2">
-            <a href="/dashboard/categories/{{ $brand->code }}" class="btn p-1 btn-secondary d-flex">
+            <a href="{{ route('brands.show', $brand->code) }}" class="btn p-1 btn-secondary d-flex">
                 <span class="material-symbols-outlined">visibility</span>
             </a>
-            <a href="/dashboard/categories/{{ $brand->code }}/edit" class="btn p-1 btn-primary d-flex">
+            <a href="{{ route('brands.edit', $brand->code) }}" class="btn p-1 btn-primary d-flex">
                 <span class="material-symbols-outlined">edit</span>
             </a>
         </div>
