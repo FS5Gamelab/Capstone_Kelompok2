@@ -12,23 +12,15 @@ class Discount extends Model
 
     protected $fillable = [
         'name',
+        'applied_to',
         'type',
-        'rules',
-        'amount',
-        'max_amount',
-        'availability',
-        'is_global',
-        'started_at',
-        'expired_at'
-    ];
-
-    protected $table = 'discounts';
-
-    protected $casts = [
-       'started_at' => 'datetime',
-       'expired_at' => 'datetime',
-       'archived_at' => 'datetime',
-       'deleted_at' => 'datetime',
+        'value',
+        'max_value',
+        'details',
+        'product_id',
+        'category_id',
+        'sub_category_id',
+        'brand_id'
     ];
 
     public function product(){

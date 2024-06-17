@@ -25,16 +25,19 @@ class DiscountFactory extends Factory
     {
         return [
             'name' => $this->faker->sentence(mt_rand(2, 8)),
+            'applied_to' => 'global',
             'type' => "fixed",
-            'rules' => json_encode([
-                'minimum_purchase' => $this->faker->numberBetween(50, 500),
-                'applicable_products' => Arr::random(['product1', 'product2', 'product3']),
+            'value' => $this->faker->numberBetween(10000, 500000),
+            'max_value' => $this->faker->numberBetween(500000, 1000000),
+            'details' => json_encode([
+                'periode' => [
+                    'start' => Carbon::now(),
+                    'end' => Carbon::now()->addDays(30)
+                ]
             ]),
-            'availability' => $this->faker->numberBetween(0, 999),
-            'applied_to' => 'product',
-            'brand_id' => function(){
-                return Brand::factory()->create()->id;
-            },
+            // 'brand_id' => function(){
+            //     return Brand::factory()->create()->id;
+            // },
             // 'category_id' => function(){
             //     return Category::factory()->create()->id;
             // },
@@ -44,8 +47,6 @@ class DiscountFactory extends Factory
             // 'product_id' => function(){
             //     return Product::factory()->create()->id;
             // },
-            'started_at' => Carbon::now(),
-            'expired_at' => Carbon::now()->addDays(30)
         ];
     }
 

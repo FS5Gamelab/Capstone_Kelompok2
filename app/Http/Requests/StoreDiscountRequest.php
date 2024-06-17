@@ -21,31 +21,39 @@ class StoreDiscountRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'name' => 'required|string|max:255|unique:discounts',
-            'type' => 'required|in:fixed,percentage',
-            'rules' => 'required|json',
-            'amount' => 'required|integer',
-            'max_amount' => 'required|integer',
-            'availability' => 'required|integer',
-            'is_global' => 'required|boolean',
+        $rules = [
+            'name' => 'required|string|max:255',
+            'type' => 'required|string',
+            'value' => 'required|integer',
+            'max_value' => 'required|integer',
+            'applied_to' => 'required|string',
             'started_at' => 'required|date',
-            'expired_at' => 'required|date',
+            'expired_at' => 'required|date'
         ];
+
+        if($this->get('applied_to') === "product"){
+            $rules['referenceCode'] = 'required|exists:products,code';
+        } else if($this->get('applied_to') === "subCategory"){
+            $rules['referenceCode'] = 'required|exists:sub_categories,code';
+        } else if($this->get('applied_to') === "category"){
+            $rules['referenceCode'] = 'required|exists:categories,code';
+        } else if($this->get('applied_to') === "brand"){
+            $rules['referenceCode'] = 'required|exists:brands,code';
+        }
+
+        return $rules;
     }
 
     public function messages(): array
     {
         return [
             'name.required' => 'Name is required',
-            'name.unique' => 'Name is already taken',
             'type.required' => 'Type is required',
             'type.in' => 'Type is invalid',
-            'rules.required' => 'Rules is required',
-            'amount.required' => 'Amount is required',
-            'max_amount.required' => 'Max Amount is required',
-            'availability.required' => 'Availability is required',
-            'is_global.required' => 'Is Global is required',
+            'value.required' => 'Amount is required',
+            'max_value.required' => 'Max Amount is required',
+            'applied_to.required' => 'Applied To is required',
+            'referenceCode.required' => 'Reference To is required',
             'started_at.required' => 'Started At is required',
             'expired_at.required' => 'Expired At is required',
         ];

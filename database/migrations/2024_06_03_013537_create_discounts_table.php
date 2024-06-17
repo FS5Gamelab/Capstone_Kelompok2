@@ -14,12 +14,11 @@ return new class extends Migration
         Schema::create('discounts', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->enum('type', ['fixed', 'percentage']);
-            $table->json('rules');
-            $table->integer('availability');
-            $table->enum('applied_to', ['product', 'sub_category', 'category', 'brand', 'global']);
-            $table->dateTime('started_at');
-            $table->dateTime('expired_at');
+            $table->enum('applied_to', ['global', 'product', 'brand','category', 'subCategory']);
+            $table->enum('type',['fixed','percentage'])->default('fixed');
+            $table->integer('value');
+            $table->integer('max_value');
+            $table->json('details');
             $table->softDeletes();
             $table->timestamps();
             

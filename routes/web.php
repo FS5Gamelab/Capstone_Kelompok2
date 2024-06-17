@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DiscountController;
@@ -36,8 +37,9 @@ Route::middleware('auth')->group(function () {
             Route::resource('discounts', DiscountController::class);
             Route::resource('items', ProductController::class);
             Route::resource('brands', BrandController::class);
-        });
 
+            Route::post('data', [AjaxController::class, 'index'])->name('data.index');
+        });
 
         Route::resource('orders', OrderController::class);
         Route::resource('shipments', ShipmentController::class);

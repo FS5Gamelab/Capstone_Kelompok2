@@ -11,7 +11,7 @@
     <x-snav active="{{ Request::is('dashboard/products/brands') }}" href="{{ route('brands.index') }}" icon="apartment">Brand</x-snav>
     <x-snav active="{{ Request::is('dashboard/products/categories*') }}" href="{{ route('categories.index') }}" icon="category">Category</x-snav>
     <x-snav active="{{ Request::is('dashboard/products/sub-categories*') }}" href="{{ route('sub-categories.index') }}" icon="list">Sub-Category</x-snav>
-    <x-snav active="{{ Request::is('dashboard/products/discounts') }}" href="{{ route('discounts.index') }}" icon="sell">Discount</x-snav>
+    <x-snav active="{{ Request::is('dashboard/products/discounts*') }}" href="{{ route('discounts.index') }}" icon="sell">Discount</x-snav>
     <x-snav active="{{ Request::is('dashboard/products/coupons') }}" href="#" icon="confirmation_number">Coupon</x-snav>
 
     <div class="container-fluid mt-3 mb-1 bg-light">Featured</div>

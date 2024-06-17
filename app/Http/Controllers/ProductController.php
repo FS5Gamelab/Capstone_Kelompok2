@@ -46,38 +46,38 @@ class ProductController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(StoreProductRequest $request)
-{
-    $validatedData = $request->validated();
+    {
+        $validatedData = $request->validated();
 
-    $size = json_encode([
-        'width' => $request->width,
-        'height' => $request->height,
-        'weight' => $request->weight,
-        'length' => $request->length
-    ]);
+        $size = json_encode([
+            'width' => $request->width,
+            'height' => $request->height,
+            'weight' => $request->weight,
+            'length' => $request->length
+        ]);
 
-    if ($request->hasFile('image')) {
-        $image = $request->file('image');
-        $imageName = time() . '.' . uniqid() . '.' . $image->getClientOriginalExtension();
-        $image->storeAs('public/Products/', $imageName);
-        $validatedData['image'] = $imageName;
-    } else {
-        $validatedData['image'] = null;
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '.' . uniqid() . '.' . $image->getClientOriginalExtension();
+            $image->storeAs('public/Products/', $imageName);
+            $validatedData['image'] = $imageName;
+        } else {
+            $validatedData['image'] = null;
+        }
+
+        $validatedData['size'] = $size;
+        $validatedData['code'] = 'PDR' . Str::random(6);
+        $validatedData['brand_id'] = Brand::where('code', $validatedData['brand_id'])->first()->id;
+        $validatedData['category_id'] = SubCategory::where('code', $validatedData['category_id'])->first()->id;
+        Product::create($validatedData);
+
+        return redirect()->route('items.index')->with(
+            'response', [
+                'type' => 'success',
+                'message' => 'Product created successfully'
+            ]
+        );
     }
-
-    $validatedData['size'] = $size;
-    $validatedData['code'] = 'PDR' . Str::random(6);
-    $validatedData['brand_id'] = Brand::where('code', $validatedData['brand_id'])->first()->id;
-    $validatedData['category_id'] = SubCategory::where('code', $validatedData['category_id'])->first()->id;
-    Product::create($validatedData);
-
-    return redirect()->route('items.index')->with(
-        'response', [
-            'type' => 'success',
-            'message' => 'Product created successfully'
-        ]
-    );
-}
 
 
     /**

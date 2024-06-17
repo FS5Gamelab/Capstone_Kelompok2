@@ -23,14 +23,7 @@ class UpdateDiscountRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255|unique:discounts,name,' . $this->route('discount')->id,
-            'type' => 'required|in:fixed,percentage',
-            'rules' => 'required|json',
-            'amount' => 'required|integer',
-            'max_amount' => 'required|integer',
-            'availability' => 'required|integer',
-            'is_global' => 'required|boolean',
-            'started_at' => 'required|date',
-            'expired_at' => 'required|date',
+            'details' => 'required|json'
         ];
     }
 

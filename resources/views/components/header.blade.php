@@ -19,9 +19,9 @@
         <div class="col-auto d-flex d-md-flex ms-auto">
             <nav class="d-flex align-items-center gap-3 py-2">
                 <div class="nav-item d-none d-md-block">
-                    <a href="#" class="btn btn-dark p-1 d-flex">
+                    <button type="button" class="btn btn-dark p-1 d-flex">
                         <span class="material-symbols-outlined">fullscreen</span>
-                    </a>
+                    </button>
                 </div>
                 <div class="nav-item d-none d-sm-block">
                     <a href="#" class="btn btn-dark p-1 d-flex position-relative">
@@ -43,7 +43,7 @@
                 </div>
                 <div class="nav-item dropdown d-none d-md-block">
                     <a type="button" class="btn btn-dark d-flex align-items-center p-1" data-bs-toggle="dropdown">
-                        <img class="rounded-circle me-2" src="{{ asset('assets/img/sample.png') }}" height="36px" alt="">
+                        <img class="rounded-circle me-2 border border-3 border-warning" src="{{ asset('assets/img/sample.png') }}" height="36px" alt="">
                         {{ Str::limit(Auth::user()->name, 15) }}
                     </a>
                     <div class="dropdown-menu mt-1 dropdown-menu-dark p-2 dropdown-menu-end">

@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use App\Models\Discount;
 use App\Http\Requests\StoreDiscountRequest;
 use App\Http\Requests\UpdateDiscountRequest;
+use App\Models\Brand;
+use App\Models\Category;
+use App\Models\SubCategory;
 
 class DiscountController extends Controller
 {
@@ -13,7 +17,7 @@ class DiscountController extends Controller
      */
     public function index()
     {
-        $discount = Discount::paginate(20);
+        $discount = Discount::orderBy('created_at', 'desc')->paginate(20);
         return view('dashboard.discounts.index', [
             'title' => 'Discounts', 'data' => $discount
         ]);
@@ -25,7 +29,8 @@ class DiscountController extends Controller
     public function create()
     {
         return view('dashboard.discounts.create', [
-            'title' => 'Create Discount'
+            'title' => 'Create Discount',
+            'data' => Product::select('code','name')->limit(10)->get()
         ]);
     }
 
@@ -35,11 +40,31 @@ class DiscountController extends Controller
     public function store(StoreDiscountRequest $request)
     {
         $validateData = $request->validated();
+        
+        if($request->applied_to == "product"){
+            $validateData['product_id'] = Product::where('code', $request->referenceCode)->first()->id;
+        } else if($request->applied_to == "category"){
+            $validateData['category_id'] = Category::where('code', $request->referenceCode)->first()->id;
+        } else if($request->applied_to == "subCategory"){
+            $validateData['sub_category_id'] = SubCategory::where('code', $request->referenceCode)->first()->id;
+        } else if($request->applied_to == "brand"){
+            $validateData['brand_id'] = Brand::where('code', $request->referenceCode)->first()->id;
+        }
+
+        $validateData['details'] = json_encode([
+            'periode' => [
+                'start' => $request->started_at,
+                'end' => $request->expired_at
+            ]
+        ]);
+
+        // dd($validateData['value']);
+
         Discount::create($validateData);
-        return redirect('dashboard.discounts.index')->with(
+        return redirect()->route('discounts.index')->with(
             'response', [
-                'status' => "success", 
-                'messages' => "Discount created successfully!"
+                'type' => "success", 
+                'message' => "Discount created successfully!"
         ]);
     }
 
