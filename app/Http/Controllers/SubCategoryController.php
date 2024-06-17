@@ -43,7 +43,7 @@ class SubCategoryController extends Controller
             'name' => $request->name,
             'code' => $code,
             'description' => $request->description,
-            'category_id' => $request->category_id
+            'category_id' => Category::where('code', $request->category_id)->first()->id
         ]);
 
         return redirect()->route('sub-categories.index')->with(

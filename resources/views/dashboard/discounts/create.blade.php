@@ -191,7 +191,7 @@
                 clearTimeout(doRequest);
 
                 doRequest = setTimeout(() => {
-                    fetchData($(this).val());
+                    fetchData();
                 }, 500);
             });
         });

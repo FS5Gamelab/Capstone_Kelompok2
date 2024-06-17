@@ -36,9 +36,8 @@ class ProductController extends Controller
     {
         return view('dashboard.products.create', [
             'title' => 'Create Product',
-            'categories' => Category::with('subCategories')->orderBy('id', 'desc')->get(),
-            'brands' => Brand::all(),
-            'discounts' => Discount::all()
+            'categories' => SubCategory::select('code','name')->limit(10)->get(),
+            'brands' => Brand::select('code','name')->limit(10)->get()
         ]);
     }
 
