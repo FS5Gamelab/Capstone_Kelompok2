@@ -16,6 +16,13 @@
             <a href="/{{ Request::path()."/".$item->code }}/edit" class="btn p-1 btn-primary d-flex">
                 <span class="material-symbols-outlined">edit</span>
             </a>
+            <form action="{{ route('brands.destroy', $item->code) }}" method="POST">
+                @csrf
+                @method('delete')
+                <button class="btn p-1 btn-danger d-flex" type="submit">
+                    <span class="material-symbols-outlined">delete</span>
+                </button>
+            </form>
         </div>
     </div>
     @endforeach

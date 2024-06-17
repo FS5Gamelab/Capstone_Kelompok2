@@ -16,6 +16,7 @@ class Brand extends Model
         'description',
         'image'
     ];
+    protected $dates = ['deleted_at'];
 
     public function products()
     {

@@ -18,7 +18,7 @@ class BrandController extends Controller
     {
         $brand = Brand::orderBy('created_at', 'desc')->paginate(20);
         return view('dashboard.brand.index',[
-            "title" => "Brands", 
+            "title" => "Brand", 
             "data" => $brand
         ]);
     }
@@ -29,7 +29,7 @@ class BrandController extends Controller
     public function create()
     {
         return view('dashboard.brand.create', [
-            "title" => "Create Brand",
+            "title" => "New Brand",
         ]);
     }
 
@@ -121,7 +121,6 @@ class BrandController extends Controller
      */
     public function destroy(Brand $brand)
     {
-        $brand = Brand::find($brand->id);
         if($brand->image) {
             Storage::delete('public/Brands/'.$brand->image);
         }    
