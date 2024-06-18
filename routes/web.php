@@ -71,4 +71,8 @@ Route::get('tracking', function () {
     return view('public.tracking');
 })->name('tracking');
 
+Route::get('profile', function () {
+    return view('user.profile');
+})->name('profile');
+
 require __DIR__.'/auth.php';
