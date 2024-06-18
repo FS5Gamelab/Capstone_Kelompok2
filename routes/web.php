@@ -47,7 +47,6 @@ Route::middleware('auth')->group(function () {
     });
 });
 
-// route for show.blade.php
 Route::get('show', function () {
     return view('products.show');
 })->name('show');
@@ -55,5 +54,9 @@ Route::get('show', function () {
 Route::get('index', function () {
     return view('index');
 })->name('index');
+
+Route::get('cart', function () {
+    return view('user.cart');
+})->name('cart');
 
 require __DIR__.'/auth.php';

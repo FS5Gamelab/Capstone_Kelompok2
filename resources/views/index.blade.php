@@ -199,7 +199,7 @@
                             <a class="nav-link" href="#">Contact</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#"><span class="material-icons">shopping_cart</span></a>
+                            <a class="nav-link" href="{{ route('cart') }}"><span class="material-icons">shopping_cart</span></a>
                         </li>
                     </ul>
                     <div class="d-flex">
