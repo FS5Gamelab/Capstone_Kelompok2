@@ -59,4 +59,8 @@ Route::get('cart', function () {
     return view('user.cart');
 })->name('cart');
 
+Route::get('checkout', function () {
+    return view('user.checkout');
+})->name('checkout');
+
 require __DIR__.'/auth.php';

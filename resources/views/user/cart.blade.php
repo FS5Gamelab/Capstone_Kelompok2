@@ -223,7 +223,7 @@
                 </div>
                 <div class="d-flex justify-content-end align-items-center mt-4">
                     <span class="total-price me-3">Total: $100.00</span>
-                    <button class="btn btn-checkout">Checkout</button>
+                    <a href="{{ route('checkout') }}" class="btn btn-checkout">Checkout</a>
                 </div>
             </div>
         </section>
