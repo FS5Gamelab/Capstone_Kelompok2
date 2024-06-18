@@ -21,27 +21,21 @@ class StoreDiscountRequest extends FormRequest
      */
     public function rules(): array
     {
-        $rules = [
+
+        return [
             'name' => 'required|string|max:255',
             'type' => 'required|string',
             'value' => 'required|integer',
             'max_value' => 'required|integer',
             'applied_to' => 'required|string',
             'started_at' => 'required|date',
-            'expired_at' => 'required|date'
+            'expired_at' => 'required|date',
+            "product_id" => 'exists:products,code',
+            "sub_category_id" => 'exists:sub_categories,code',
+            "category_id" => 'exists:categories,code',
+            "brand_id" => 'exists:brands,code',
+            "global_id" => 'nullable'
         ];
-
-        if($this->get('applied_to') === "product"){
-            $rules['referenceCode'] = 'required|exists:products,code';
-        } else if($this->get('applied_to') === "subCategory"){
-            $rules['referenceCode'] = 'required|exists:sub_categories,code';
-        } else if($this->get('applied_to') === "category"){
-            $rules['referenceCode'] = 'required|exists:categories,code';
-        } else if($this->get('applied_to') === "brand"){
-            $rules['referenceCode'] = 'required|exists:brands,code';
-        }
-
-        return $rules;
     }
 
     public function messages(): array

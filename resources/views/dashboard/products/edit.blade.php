@@ -3,19 +3,19 @@
 @section('contents')
 <div class="container-fluid">
     <div class="row justify-content-center py-3">
-        <form class="col-11 col-sm-10 col-md-9 col-lg-8 col-xl-7 col-xxl-6 form-light p-3 border rounded shadow" method="post" action="{{ route('items.update', $product->code) }}" enctype="multipart/form-data">
+        <form class="col-11 col-sm-10 col-md-9 col-lg-8 col-xl-7 col-xxl-6 form-light p-3 border rounded shadow" method="post" action="{{ route('items.update', $data->code) }}" enctype="multipart/form-data">
             @csrf
-            @method('put')
-            <div class="mb-3">
+            @method('PUT')
+            <div class="mb-3 container-fluid">
                 <label for="productName" class="form-label">Name</label>
-                <input type="text" class="form-control" name="name" id="productName" value="{{ old('name', $product->name) }}" placeholder="Enter product name...">
+                <input type="text" class="form-control" name="name" value="{{ old('name', $data->name) }}" id="productName" placeholder="Enter product name...">
                 @error('name')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
             </div>
             <div class="mb-3 container-fluid">
                 <div class="row">
-                    <div class="col-6 col-md d-flex flex-column justify-content-center ps-2 pe-1">
+                    <div class="col-6 col-md d-flex flex-column justify-content-center">
                         <label for="productLength" class="form-label">Length</label>
                         <div class="input-group">
                             <input class="form-control text-end" name="length" min="1" value="{{ old('length', $size['length']) }}" id="productLength" type="number" step="0.01">
@@ -25,7 +25,7 @@
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
-                    <div class="col-6 col-md d-flex flex-column justify-content-center ps-2 pe-1">
+                    <div class="col-6 col-md d-flex flex-column justify-content-center">
                         <label for="productWidth" class="form-label">Width</label>
                         <div class="input-group">
                             <input class="form-control text-end" name="width" min="1" value="{{ old('width', $size['width']) }}" id="productWidth" type="number" step="0.01">
@@ -35,7 +35,7 @@
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
-                    <div class="col-6 col-md d-flex flex-column justify-content-center ps-2 pe-1">
+                    <div class="col-6 col-md d-flex flex-column justify-content-center">
                         <label for="productHeight" class="form-label">Height</label>
                         <div class="input-group">
                             <input class="form-control text-end" name="height" min="1" value="{{ old('height', $size['height']) }}" id="productHeight" type="number" step="0.01">
@@ -45,7 +45,7 @@
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
-                    <div class="col-6 col-md d-flex flex-column justify-content-center ps-2 pe-1">
+                    <div class="col-6 col-md d-flex flex-column justify-content-center">
                         <label for="productWeight" class="form-label">Weight</label>
                         <div class="input-group">
                             <input class="form-control text-end" name="weight" min="1" value="{{ old('weight', $size['weight']) }}" id="productWeight" type="number" step="0.01">
@@ -59,20 +59,20 @@
             </div>            
             <div class="mb-3 container-fluid">
                 <div class="row">
-                    <div class="col-6 col-md d-flex flex-column justify-content-center ps-2 pe-1">
+                    <div class="col-6 col-md d-flex flex-column justify-content-center">
                         Stock
                         <div class="input-group">
-                            <input class="form-control text-end" name="stock" min="1" value="{{ old('price', $product->stock) }}" id="productStock" type="number">
+                            <input class="form-control text-end" name="stock" min="1" value="{{ old('stock', $data->stock) }}" id="productStock" type="number">
                         </div>
                         @error('stock')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
-                    <div class="col-6 col-md d-flex flex-column justify-content-center ps-2 pe-1">
+                    <div class="col-6 col-md d-flex flex-column justify-content-center">
                         Prices
                         <div class="input-group">
                             <div class="bg-dark-subtle d-flex align-items-center px-1 border rounded-start">Rp</div>
-                            <input class="form-control text-end" name="price" min="1" value="{{ old('price', $product->price) }}" id="productPrice" type="number">
+                            <input class="form-control text-end" name="price" min="1" value="{{ old('price', $data->price) }}" id="productPrice" type="number">
                         </div>
                         @error('price')
                             <div class="text-danger">{{ $message }}</div>
@@ -80,78 +80,70 @@
                     </div>
                 </div>
             </div>
-            <div class="mb-3">
-                <label for="productExpired" class="form-label">Expired</label>
-                <input type="date" class="form-control" name="expired_at" value="{{ old('expired_at', $product->expired_at->format('Y-m-d')) }}" id="productExpired">
+            <div class="mb-3 container-fluid">
+                <div class="row">
+                    <div class="col-sm">
+                        <input type="checkbox" class="form-check-input" name="is_expired" value="1" id="isExpired" {{ old('is_expired', $data->expired_at) ? 'checked' : '' }}>
+                        <label for="isExpired" class="form-label">Product have an expiration date?</label>
+                    </div>
+                </div>
+                <div class="expireDate row {{ old('is_expired', $data->expired_at) != true ? 'd-none' : '' }}">
+                    <div class="col-sm input-group">
+                        <label for="productExpired" class="text-bg-dark d-flex align-items-center px-1 rounded-start">Expired at</label>
+                        <input type="date" class="form-control" name="expired_at" value="{{ old('expired_at', $data->expired_at ? $data->expired_at->format('Y-m-d') : '' ) }}" id="productExpired">
+                    </div>
+                </div>
                 @error('expired_at')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
             </div>
-            <div class="mb-3">
-                <label for="productBrand" class="form-label">Brand</label>
-                <select name="brand_id" id="productBrand" class="form-control">
-                    <option value="" selected disabled>Select Brand</option>
-                    @foreach($brands as $brand)
-                        @if ($brand->code === $product->brand->code)
-                        <option value="{{ $brand->code }}" selected>{{ $brand->name }}</option>
-                        @else
-                        <option value="{{ $brand->code }}">{{ $brand->name }}</option>
-                        @endif
-                    @endforeach
-                </select>
-                @error('brand_id')
-                    <div class="text-danger">{{ $message }}</div>
-                @enderror
+            <div class="mb-3 container-fluid">
+                <div class="row">
+                    <x-search-selection 
+                    :referenceData="$brands" 
+                    referenceLabel="Brand" 
+                    referenceRequest="brand" 
+                    referenceValue="{{ $data->brand->code }}" 
+                    referenceName="{{ $data->brand->name }}"></x-search-selection>
+                </div>
             </div>
-            <div class="mb-3">
-                <label for="productCategory" class="form-label">Sub Category</label>
-                <select class="form-control" name="category_id" id="productCategory">
-                    <option value="" selected disabled>Select Category</option>
-                    @foreach ($categories as $category)
-                    <optgroup label="{{ $category->name }}">
-                        @if ($category->subCategories->isNotEmpty())
-                            @foreach ($category->subCategories as $subCategory)
-                                @if ($subCategory->code === $product->subCategory->code)
-                                <option value="{{ $subCategory->code }}" selected>{{ $subCategory->name }}</option>
-                                @else
-                                <option value="{{ $subCategory->code }}">{{ $subCategory->name }}</option>
-                                @endif
-                            @endforeach
-                        @else
-                            <option disabled>-</option>
-                        @endif
-                    </optgroup>
-                    @endforeach
-                </select>
-                @error('category_id')
-                    <div class="text-danger">{{ $message }}</div>
-                @enderror
+            <div class="mb-3 container-fluid">
+                <div class="row">
+                    <x-search-selection 
+                    :referenceData="$categories" 
+                    referenceLabel="Category" 
+                    referenceRequest="sub_category" 
+                    referenceValue="{{ $data->subCategory->code }}" 
+                    referenceName="{{ $data->subCategory->name }}"></x-search-selection>
+                </div>
             </div>
-            <div class="mb-3">
+            <div class="mb-3 container-fluid">
                 <label for="productDescription" class="form-label">Description</label>
-                <textarea class="form-control" name="description" id="productDescription" rows="4" placeholder="Enter category description (Optional)">{{ old('description', $product->description) }}</textarea>
+                <textarea class="form-control" name="description" id="productDescription" rows="4" placeholder="Enter category description (Optional)">{{ old('description', $data->description) }}</textarea>
                 @error('description')
                     <div class="text-danger text-truncate">{{ $message }}</div>
                 @enderror
             </div>
-            <div class="mb-3">
+            <div class="mb-3 container-fluid">
                 <div class="form-label">Tetapkan Produk sebagai Pre-Order?</div>
                 <div class="col form-check">
-                    <input type="radio" class="form-check-input" name="pre_order" value="1" id="statusTrue" {{ $product->pre_order ? 'checked' : ''}}>
+                    <input type="radio" class="form-check-input" name="pre_order" value="1" id="statusTrue" {{ old('pre_order', $data->pre_order) == 1 ? 'checked' : '' }}>
                     <label for="statusTrue" class="form-label">Ya</label>
                 </div>
                 <div class="col form-check">
-                    <input type="radio" class="form-check-input" name="pre_order" value="0" id="statusFalse" {{ $product->pre_order ? '' : 'checked' }}>
+                    <input type="radio" class="form-check-input" name="pre_order" value="0" id="statusFalse" {{ old('pre_order', $data->pre_order) == 0 ? 'checked' : '' }}>
                     <label for="statusFalse" class="form-label">Tidak</label>
                 </div>
-                @error('status')
+                @error('pre_order')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
             </div>
-            <div class="mb-3">
+            <div class="mb-3 container-fluid">
                 <div id="imagePreview" class="mb-3 text-center">
-                    @if($product->image)
-                            <img src="{{ asset('storage/Products/'.$product->image) }}" class="border" height="160px" alt="{{ $product->name }}">
+                    @if($data->image)
+                    <img src="{{ asset('storage/Products/'.$data->image) }}" class="border" height="160px" alt="{{ $data->name }}">
+                    @else
+                    <img src="{{ asset('storage/Default/brand.png') }}" class="border" height="160px" alt="Brand default">
                     @endif
                 </div>
                 <label for="productImage" class="form-label">Image</label>
@@ -160,8 +152,8 @@
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
             </div>
-            <div class="mb-3 d-flex">
-                <button class="btn btn-success mx-auto" type="submit">Save Changes</button>
+            <div class="mb-3 container-fluid d-flex">
+                <button class="btn btn-success mx-auto" type="submit">Update</button>
             </div>
         </form>
     </div>
@@ -178,5 +170,16 @@
         }
         reader.readAsDataURL(event.target.files[0]);
     }
+
+    $('#isExpired').change(function(){
+        if ($(this).is(':checked')) {
+            $('#productExpired').val('{{ date('Y-m-d') }}');
+            $('.expireDate').removeClass('d-none');
+        } else {
+            $('#productExpired').val('');
+            $('.expireDate').addClass('d-none');
+        }
+    });
 </script>
+<x-search-selectionjs></x-search-selectionjs>
 @endsection

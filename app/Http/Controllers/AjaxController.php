@@ -16,7 +16,7 @@ class AjaxController extends Controller
             'product' => Product::where('name', 'like', $request->target . '%')->limit(10)->select('code','name')->get(),
             'brand' => Brand::where('name', 'like', $request->target . '%')->limit(10)->select('code','name')->get(),
             'category' => Category::where('name', 'like', $request->target . '%')->limit(10)->select('code','name')->get(),
-            'subCategory' => SubCategory::where('name', 'like', $request->target . '%')->limit(10)->select('code','name')->get()
+            'sub_category' => SubCategory::where('name', 'like', $request->target . '%')->limit(10)->select('code','name')->get()
         ];
 
         return $data[$request->dataRequest];

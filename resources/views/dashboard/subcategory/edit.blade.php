@@ -1,45 +1,43 @@
 @extends('layouts.dashboard')
 
 @section('contents')
-<div class="content container-fluid h-100 d-flex flex-column">
-    <div class="row justify-content-center py-2">
-        <form class="col-6 py-2 rounded bg-light" action="{{ route('sub-categories.update', $subcategory->id) }}" method="POST">
+<div class="container-fluid">
+    <div class="row justify-content-center py-3">
+        <form class="col-11 col-sm-10 col-md-9 col-lg-8 col-xl-7 col-xxl-6 form-light p-3 border rounded shadow" method="post" action="{{ route('sub-categories.update', $data->code) }}">
             @csrf
             @method('PUT')
-            <fieldset>
-                <input type="hidden" name="id" value="{{ $subcategory->id }}">
-                <div class="mb-3">
-                    <label for="subName" class="form-label">Name</label>
-                    <input type="text" class="form-control" name="name" id="subName" value="{{ $subcategory->name }}">
-                    @error('name')
-                        <div class="text-danger">{{ $message }}</div>
-                    @enderror
+            <div class="mb-3 container-fluid">
+                <label for="subCategoryName" class="form-label">Name</label>
+                <input type="text" class="form-control" name="name" value="{{ old('name', $data->name) }}" id="subCategoryName" placeholder="Enter Sub-Category name..." required>
+                @error('name')
+                <div class="text-danger text-truncate">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="mb-3 container-fluid">
+                <div class="row">
+                    <x-search-selection 
+                    :referenceData="$categories" 
+                    referenceLabel="Category" 
+                    referenceRequest="category" 
+                    referenceValue="{{ $data->category->code }}" 
+                    referenceName="{{ $data->category->name }}"></x-search-selection>
                 </div>
-                <div class="mb-3">
-                    <label for="category_id" class="form-label">Category</label>
-                    <select name="category_id" class="form-control">
-                        @foreach($categories as $category)
-                            <option value="{{ $category->id }}" {{ $subcategory->category_id == $category->id ? 'selected' : '' }}>
-                                {{ $category->name }}
-                            </option>
-                        @endforeach
-                    </select>
-                    @error('category_id')
-                        <div class="text-danger">{{ $message }}</div>
-                    @enderror
-                </div>
-                <div class="mb-3">
-                    <label for="categoryDescription" class="form-label">Description</label>
-                    <textarea class="form-control" name="description" id="categoryDescription" rows="3">{{ $subcategory->description }}</textarea>
-                    @error('description')
-                        <div class="text-danger">{{ $message }}</div>
-                    @enderror
-                </div>
-                <div class="d-flex justify-content-center">
-                    <button type="submit" class="btn btn-primary">Update</button>
-                </div>
-            </fieldset>
+            </div>
+            <div class="mb-3 container-fluid">
+                <label for="subCategoryDescription" class="form-label">Description</label>
+                <textarea class="form-control" name="description" id="subCategoryDescription" rows="4" placeholder="Enter sub category description (Optional)">{{ old('description', $data->description) }}</textarea>
+                @error('description')
+                <div class="text-danger text-truncate">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="mb-3 container-fluid d-flex">
+                <button class="btn btn-success mx-auto" type="submit">Update</button>
+            </div>
         </form>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+    <x-search-selectionjs></x-search-selectionjs>
 @endsection

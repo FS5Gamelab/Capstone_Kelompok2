@@ -12,18 +12,21 @@ class Discount extends Model
 
     protected $fillable = [
         'name',
+        'code',
         'applied_to',
+        'reference_id',
         'type',
         'value',
         'max_value',
-        'details',
-        'product_id',
-        'category_id',
-        'sub_category_id',
-        'brand_id'
+        'details'
     ];
 
     public function product(){
-        return $this->belongsTo(Product::class);
+        return $this->belongsTo(Product::class, 'reference_id');
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'code';
     }
 }

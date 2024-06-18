@@ -32,7 +32,7 @@ class StoreProductRequest extends FormRequest
             'price' => 'required|integer',
             'pre_order' => 'required|boolean',
             'image' => 'nullable|image|mimes::jpeg,png,jpg,gif,svg|max:2048',
-            'category_id' => 'required|exists:sub_categories,code',
+            'sub_category_id' => 'required|exists:sub_categories,code',
             'brand_id' => 'required|exists:brands,code',
             'expired_at' => 'nullable|date',
         ];

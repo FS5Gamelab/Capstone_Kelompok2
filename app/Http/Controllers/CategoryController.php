@@ -37,7 +37,7 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-        $code = Carbon::now()->format('YmdHis') . mt_rand(100000, 999999);
+        $code = "CRY".Carbon::now()->format('YmdHis') . mt_rand(100000, 999999);
 
         Category::create([
             'name' => $request->name,
@@ -61,7 +61,7 @@ class CategoryController extends Controller
     public function show(Category $category)
     {
         return view('dashboard.category.show', [
-            'title' => 'Category',
+            'title' => 'Sub-category on ' . $category->name,
             'category' => $category,
             'data' => SubCategory::where('category_id', $category->id)->orderBy('created_at', 'desc')->paginate(20)
         ]);
@@ -112,7 +112,7 @@ class CategoryController extends Controller
         return redirect()->route('categories.index')->with(
             'response', [
                 'type' => 'success', 
-                'message' => 'Category deleted successfully'
+                'message' => $category->name . ' deleted successfully'
             ]);
     }
 }

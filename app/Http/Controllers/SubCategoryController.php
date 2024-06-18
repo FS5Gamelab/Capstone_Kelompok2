@@ -29,7 +29,7 @@ class SubCategoryController extends Controller
     {
         return view('dashboard.subcategory.create', [
             "title" => "Create Sub-Category",
-            'categories' => Category::all()
+            'categories' => Category::select('code','name')->limit(10)->get()
         ]);
     }
 
@@ -38,7 +38,7 @@ class SubCategoryController extends Controller
      */
     public function store(StoreSubCategoryRequest $request)
     {
-        $code = Carbon::now()->format('YmdHis') . mt_rand(100000, 999999);
+        $code = "SCY".Carbon::now()->format('YmdHis') . mt_rand(100000, 999999);
         SubCategory::create([
             'name' => $request->name,
             'code' => $code,
@@ -74,8 +74,8 @@ class SubCategoryController extends Controller
         // $subCategory = SubCategory::find($subcategory->id);
         return view('dashboard.subcategory.edit', [
             "title" => "Edit Sub-Category", 
-            'subcategory' => $sub_category, 
-            'categories' => $category
+            'data' => $sub_category, 
+            'categories' => Category::select('code','name')->limit(10)->get()
         ]);
     }
 
@@ -84,19 +84,16 @@ class SubCategoryController extends Controller
      */
     public function update(UpdateSubCategoryRequest $request, SubCategory $sub_category)
     {
-        // dd($request->all());
-        $code = Carbon::now()->format('YmdHis') . mt_rand(100000, 999999);
-        $sub_category->update([
-            'name' => $request->name,
-            'code' => $code,
-            'description' => $request->description,
-            'category_id' => $request->category_id
-        ]);
+        $validateData = $request->validated();
 
-        return redirect()->route('subcategory.index')->with(
+        $validateData['category_id'] = Category::where('code', $validateData['category_id'])->first()->id;
+        
+        $sub_category->update($validateData);
+
+        return redirect()->route('sub-categories.index')->with(
             'response', [
-                'status' => 'success', 
-                'messages' => 'Sub-Category updated successfully'
+                'type' => 'success', 
+                'message' => 'Sub-Category updated successfully'
             ]);
     }
 

@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
+use App\Models\Brand;
 use App\Models\Product;
+use App\Models\Category;
 use App\Models\Discount;
+use App\Models\SubCategory;
 use App\Http\Requests\StoreDiscountRequest;
 use App\Http\Requests\UpdateDiscountRequest;
-use App\Models\Brand;
-use App\Models\Category;
-use App\Models\SubCategory;
 
 class DiscountController extends Controller
 {
@@ -19,7 +20,8 @@ class DiscountController extends Controller
     {
         $discount = Discount::orderBy('created_at', 'desc')->paginate(20);
         return view('dashboard.discounts.index', [
-            'title' => 'Discounts', 'data' => $discount
+            'title' => 'Discounts',
+            'data' => $discount
         ]);
     }
 
@@ -40,17 +42,17 @@ class DiscountController extends Controller
     public function store(StoreDiscountRequest $request)
     {
         $validateData = $request->validated();
-        
-        if($request->applied_to == "product"){
-            $validateData['product_id'] = Product::where('code', $request->referenceCode)->first()->id;
-        } else if($request->applied_to == "category"){
-            $validateData['category_id'] = Category::where('code', $request->referenceCode)->first()->id;
-        } else if($request->applied_to == "subCategory"){
-            $validateData['sub_category_id'] = SubCategory::where('code', $request->referenceCode)->first()->id;
-        } else if($request->applied_to == "brand"){
-            $validateData['brand_id'] = Brand::where('code', $request->referenceCode)->first()->id;
-        }
 
+        $validateData['code'] = 'DCT'.Carbon::now()->format('YmdHis') . mt_rand(100000, 999999);
+
+        $reference = [
+            'product' =>  $request->has('product_id') ? Product::where('code', $validateData['product_id'])->first()->id : '',
+            'sub_category' => $request->has('sub_category_id') ? SubCategory::where('code', $validateData['sub_category_id'])->first()->id : '',
+            'category' => $request->has('category_id') ? Category::where('code', $validateData['category_id'])->first()->id : '',
+            'brand' => $request->has('brand_id') ? Brand::where('code', $validateData['brand_id'])->first()->id : ''
+        ];
+
+        $validateData['reference_id'] = $reference[$validateData['applied_to']];
         $validateData['details'] = json_encode([
             'periode' => [
                 'start' => $request->started_at,
@@ -58,9 +60,10 @@ class DiscountController extends Controller
             ]
         ]);
 
-        // dd($validateData['value']);
-
+        unset($validateData[$validateData['applied_to'].'_id']);
+        
         Discount::create($validateData);
+
         return redirect()->route('discounts.index')->with(
             'response', [
                 'type' => "success", 
@@ -76,7 +79,7 @@ class DiscountController extends Controller
         $discount = Discount::find($discount->id);
         return view('dashboard.discounts.show', [
             'title' => 'Detail Discount', 
-            'discount' => $discount
+            'data' => $discount
         ]);
     }
 
@@ -85,13 +88,11 @@ class DiscountController extends Controller
      */
     public function edit(Discount $discount)
     {
-        $discount = Discount::find($discount->id);
-        if(!$discount) {
-            return response()->json(['message' => 'Discount not found'], 404);
-        }
         return view('dashboard.discounts.edit', [
             'title' => 'Edit Discount', 
-            'discount' => $discount
+            'data' => $discount,
+            'details' => json_decode($discount->details, true),
+            'products' => Product::select('code','name')->limit(10)->get()
         ]);
     }
 
@@ -100,14 +101,28 @@ class DiscountController extends Controller
      */
     public function update(UpdateDiscountRequest $request, Discount $discount)
     {
-        $discount = Discount::find($discount->id);
         $validateData = $request->validated();
+
+        $reference = [
+            'product' =>  $request->has('product_id') ? Product::where('code', $validateData['product_id'])->first()->id : '',
+            'sub_category' => $request->has('sub_category_id') ? SubCategory::where('code', $validateData['sub_category_id'])->first()->id : '',
+            'category' => $request->has('category_id') ? Category::where('code', $validateData['category_id'])->first()->id : '',
+            'brand' => $request->has('brand_id') ? Brand::where('code', $validateData['brand_id'])->first()->id : ''
+        ];
+
+        $validateData['reference_id'] = $reference[$validateData['applied_to']];
+        $validateData['details'] = json_encode([
+            'periode' => [
+                'start' => $request->started_at,
+                'end' => $request->expired_at
+            ]
+        ]);
         $discount->update($validateData);
-        return redirect('dashboard.discounts.index')->with(
+        return redirect()->route('discounts.index')->with(
             'response', [
-                'status' => "success", 
-                'messages' => "Discount updated successfully!"
-            ]);
+                'type' => "success", 
+                'message' => "Discount created successfully!"
+        ]);
     }
 
     /**

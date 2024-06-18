@@ -54,7 +54,7 @@
             clearTimeout(doRequest);
             
             doRequest = setTimeout(() => {
-                fetchData(this, $(this).attr('name'), $(this).val());
+                fetchData(this, $(this).attr('data-request'), $(this).val());
             }, 500);
         })
     });

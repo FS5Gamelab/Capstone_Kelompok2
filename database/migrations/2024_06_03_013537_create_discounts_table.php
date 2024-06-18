@@ -13,22 +13,16 @@ return new class extends Migration
     {
         Schema::create('discounts', function (Blueprint $table) {
             $table->id();
+            $table->string('code')->unique();
             $table->string('name');
             $table->enum('applied_to', ['global', 'product', 'brand','category', 'subCategory']);
+            $table->unsignedBigInteger('reference_id')->unique()->nullable();
             $table->enum('type',['fixed','percentage'])->default('fixed');
             $table->integer('value');
             $table->integer('max_value');
             $table->json('details');
             $table->softDeletes();
             $table->timestamps();
-            
-            /**
-             * Hanya satu relasi yang diisi, berdasarkan 'applied_to'. Dan jika bernilai global, semua menjadi NULL.
-             */
-            $table->foreignId('product_id')->unique()->nullable()->constrained()->onDelete('cascade');
-            $table->foreignId('sub_category_id')->unique()->nullable()->constrained()->onDelete('cascade');
-            $table->foreignId('category_id')->unique()->nullable()->constrained()->onDelete('cascade');
-            $table->foreignId('brand_id')->unique()->nullable()->constrained()->onDelete('cascade');
         });
     }
 

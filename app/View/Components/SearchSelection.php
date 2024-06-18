@@ -8,16 +8,17 @@ use Illuminate\View\Component;
 
 class SearchSelection extends Component
 {
-    public $name, $value, $text, $contents;
+    public $referenceData, $referenceLabel, $referenceRequest, $referenceValue, $referenceName;
     /**
      * Create a new component instance.
      */
-    public function __construct($name, $value, $text, $contents)
+    public function __construct($referenceData, $referenceLabel, $referenceRequest, $referenceValue, $referenceName)
     {
-        $this->name = $name;
-        $this->value = $value;
-        $this->text = $text;
-        $this->contents = $contents;
+        $this->referenceData = $referenceData;
+        $this->referenceLabel = $referenceLabel;
+        $this->referenceRequest = $referenceRequest;
+        $this->referenceValue = $referenceValue;
+        $this->referenceName = $referenceName;
     }
 
     /**

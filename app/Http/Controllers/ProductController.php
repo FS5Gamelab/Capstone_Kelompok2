@@ -65,9 +65,9 @@ class ProductController extends Controller
         }
 
         $validatedData['size'] = $size;
-        $validatedData['code'] = 'PDR' . Str::random(6);
+        $validatedData['code'] = 'PCT' . Carbon::now()->format('YmdHis') . mt_rand(100000, 999999);
         $validatedData['brand_id'] = Brand::where('code', $validatedData['brand_id'])->first()->id;
-        $validatedData['category_id'] = SubCategory::where('code', $validatedData['category_id'])->first()->id;
+        $validatedData['category_id'] = SubCategory::where('code', $validatedData['sub_category_id'])->first()->id;
         Product::create($validatedData);
 
         return redirect()->route('items.index')->with(
@@ -99,7 +99,7 @@ class ProductController extends Controller
     {
         return view('dashboard.products.edit', [
             'title' => 'Edit Product',
-            'product' => $item,
+            'data' => $item,
             'size' => json_decode($item->size, true),
             'categories' => Category::with('subCategories')->orderBy('id', 'desc')->get(),
             'brands' => Brand::all(),
@@ -134,7 +134,7 @@ class ProductController extends Controller
 
         $validateData['size'] = $size;
         $validateData['brand_id'] = Brand::where('code', $validateData['brand_id'])->first()->id;
-        $validateData['category_id'] = SubCategory::where('code', $validateData['category_id'])->first()->id;
+        $validateData['category_id'] = SubCategory::where('code', $validateData['sub_category_id'])->first()->id;
 
         $item->update($validateData);
         return redirect()->route('items.index')->with(

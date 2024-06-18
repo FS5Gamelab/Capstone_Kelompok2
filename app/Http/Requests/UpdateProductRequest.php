@@ -32,10 +32,10 @@ class UpdateProductRequest extends FormRequest
             'stock' => 'required|integer',
             'price' => 'required|integer',
             'pre_order' => 'required|boolean',
-            'category_id' => 'required|exists:sub_categories,code',
-            'brand_id' => 'required|exists:brands,code',
-            'expired_at' => 'required|date',
             'image' => 'nullable|image|mimes::jpeg,png,jpg,gif,svg|max:2048',
+            'sub_category_id' => 'required|exists:sub_categories,code',
+            'brand_id' => 'required|exists:brands,code',
+            'expired_at' => 'nullable|date',
         ];
     }
 

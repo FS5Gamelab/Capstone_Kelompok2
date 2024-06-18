@@ -22,9 +22,20 @@ class UpdateDiscountRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255|unique:discounts,name,' . $this->route('discount')->id,
-            'details' => 'required|json'
+            'name' => 'required|string|max:255',
+            'type' => 'required|string',
+            'value' => 'required|integer',
+            'max_value' => 'required|integer',
+            'applied_to' => 'required|string',
+            'started_at' => 'required|date',
+            'expired_at' => 'required|date',
+            "product_id" => 'exists:products,code',
+            "sub_category_id" => 'exists:sub_categories,code',
+            "category_id" => 'exists:categories,code',
+            "brand_id" => 'exists:brands,code',
+            "global_id" => 'nullable'
         ];
+
     }
 
     public function messages(): array

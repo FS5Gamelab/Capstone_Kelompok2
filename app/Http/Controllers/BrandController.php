@@ -40,7 +40,7 @@ class BrandController extends Controller
     {
         // dd($request->validated());
         $validateData = $request->validated();
-        $code = Carbon::now()->format('YmdHis') . mt_rand(100000, 999999);
+        $code = 'BND'.Carbon::now()->format('YmdHis') . mt_rand(100000, 999999);
 
         if($request->hasFile('image')) {
             $image = $request->file('image');
@@ -91,8 +91,6 @@ class BrandController extends Controller
      */
     public function update(UpdateBrandRequest $request, Brand $brand)
     {
-        // dd($request->validated());
-        // $brand = Brand::find($brand->id);
         $validateData = $request->validated();
 
         $validateData['updated_at'] = Carbon::now();
@@ -128,7 +126,7 @@ class BrandController extends Controller
         return redirect()->route('brands.index')->with(
             'response',[
                 'type' => 'success', 
-                'message' => 'Brand deleted successfully'
+                'message' => $brand->name . ' deleted successfully'
             ]);
     }
 }

@@ -14,7 +14,7 @@
             </div>
             <div class="mb-3 container-fluid">
                 <label for="brandDescription" class="form-label">Description</label>
-                <textarea class="form-control" name="description" id="brandDescription" rows="4" placeholder="Enter brand description">{{ old('description') }}</textarea>
+                <textarea class="form-control" name="description" id="brandDescription" rows="4" placeholder="Enter brand description" required>{{ old('description') }}</textarea>
                 @error('description')
                 <div class="text-danger text-truncate">{{ $message }}</div>
                 @enderror
