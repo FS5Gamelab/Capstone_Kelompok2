@@ -47,4 +47,9 @@ Route::middleware('auth')->group(function () {
     });
 });
 
+// route for show.blade.php
+Route::get('show', function () {
+    return view('products.show');
+})->name('show');
+
 require __DIR__.'/auth.php';
