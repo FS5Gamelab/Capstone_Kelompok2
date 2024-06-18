@@ -316,9 +316,6 @@
                 <div class="footer-copy position-absolute bottom-0 start-0 p-3 mt-3">
                     <p class="mb-0">&copy; Mega Mart 2024. All rights reserved.</p>
                 </div>
-                <div class="d-flex">
-                        <a href="#" class="btn btn-signup btn-sm">Sign Up</a>
-                    </div>
             </div>
         </footer>
     </div>
