@@ -50,13 +50,12 @@
             font-weight: 500;
             border-radius: 5px;
         }
-        .btn-login, .btn-search {
+        .btn-login {
             background-color: #fff;
             color: #0cc0df;
-            border: 1;
-            border-color: #0cc0df;
+            border: 1px solid #0cc0df;
         }
-        .btn-login, .btn-search:hover {
+        .btn-login:hover {
             background-color: #0cc0df;
             color: #fff;
         }
@@ -67,8 +66,7 @@
         .btn-signup:hover {
             background-color: #fff;
             color: #0cc0df;
-            border: 1;
-            border-color: #0cc0df;
+            border: 1px solid #0cc0df;
         }
 
         .carousel-item img {
@@ -79,6 +77,15 @@
 
         #nav-all-tab, #nav-cat1-tab, #nav-cat2-tab, #nav-cat3-tab, #nav-cat4-tab {
             color: #0cc0df;
+        }
+        .btn-search {
+            background-color: #fff;
+            color: #0cc0df;
+            border: 1px solid #0cc0df;
+        }
+        .btn-search:hover {
+            background-color: #0cc0df;
+            color: #fff;
         }
         .product-card {
             margin-bottom: 30px;
@@ -127,17 +134,12 @@
         footer {
             background-color: #02262c;
             color: #fff;
-            height: 150px;
             padding: 20px 0;
             text-align: center;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap; /* Allow items to wrap */
         }
         .footer-logo {
             height: 40px;
             margin-bottom: 10px;
-            margin-top: 10px;
         }
         .footer-links {
             display: flex;
@@ -146,7 +148,6 @@
             list-style: none;
             padding: 0;
             margin: 0;
-            flex-wrap: wrap; /* Allow items to wrap */
         }
         .footer-links a {
             color: #fff;
@@ -157,10 +158,8 @@
             color: #0cc0df;
         }
         .footer-copy {
-            margin-top: 20px;
-            margin-left: 45px;
-            width: 100%;
-            text-align: left;
+            margin-top: 10px;
+            font-size: 14px;
             font-weight: 100;
         }
         .pagination .page-item .page-link {
@@ -296,25 +295,18 @@
         </section>
 
         <!-- Footer -->
-        <footer class="position-relative">
-            <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
-                <!-- Logo di pojok kiri atas -->
-                <div class="footer-logo mb-3 mb-md-0">
-                    <img src="{{ asset('assets/img/logo-capstone1.png') }}" alt="Logo" style="height: 40px;">
-                </div>
-
-                <!-- Menu di footer -->
-                <ul class="footer-links d-flex justify-content-right flex-wrap gap-3 mb-3 mb-md-0">
-                    <li class="nav-item"><a href="#">Products</a></li>
-                    <li class="nav-item"><a href="#">About</a></li>
-                    <li class="nav-item"><a href="#">FAQ</a></li>
-                    <li class="nav-item"><a href="#">Contact</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#"><span class="material-icons">shopping_cart</span></a></li>
+        <footer class="row">
+            <div class="container d-flex flex-column align-items-center">
+                <img src="{{ asset('assets/img/logo-capstone1.png') }}" alt="Logo" class="footer-logo">
+                <ul class="footer-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#product">Products</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Contact</a></li>
                 </ul>
-
-                <!-- Copyright di pojok kiri bawah -->
-                <div class="footer-copy position-absolute bottom-0 start-0 p-3 mt-3">
-                    <p class="mb-0">&copy; Mega Mart 2024. All rights reserved.</p>
+                <div class="footer-copy">
+                    <p>&copy; 2024 Mega Mart. All rights reserved.</p>
                 </div>
             </div>
         </footer>
@@ -350,7 +342,7 @@
             paginatedItems.forEach(product => {
                 const productCard = `
                     <div class="col-lg-3 col-md-4 col-sm-6 product-card">
-                        <div class="card" onclick="window.location.href='#';">
+                        <div class="card" onclick="window.location.href='{{ route('show') }}';">
                             <img src="${product.imgSrc}" class="card-img-top" alt="${product.title}">
                             <div class="card-body">
                                 <h5 class="card-title">${product.title}</h5>
