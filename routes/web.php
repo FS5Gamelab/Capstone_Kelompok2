@@ -67,4 +67,8 @@ Route::get('invoice', function () {
     return view('user.invoice');
 })->name('invoice');
 
+Route::get('tracking', function () {
+    return view('public.tracking');
+})->name('tracking');
+
 require __DIR__.'/auth.php';

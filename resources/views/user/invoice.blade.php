@@ -117,6 +117,38 @@
             font-size: 20px;
             font-weight: 700;
         }
+
+        footer {
+            background-color: #02262c;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+        .footer-logo {
+            height: 40px;
+            margin-bottom: 10px;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .footer-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .footer-links a:hover {
+            color: #0cc0df;
+        }
+        .footer-copy {
+            margin-top: 10px;
+            font-size: 14px;
+            font-weight: 100;
+        }
     </style>
 </head>
 <body>
@@ -136,7 +168,7 @@
                             <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
                             <li class="nav-item"><a class="nav-link" href="#">FAQ</a></li>
                             <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#"><span class="material-icons">shopping_cart</span></a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ route('cart') }}"><span class="material-icons">shopping_cart</span></a></li>
                         </ul>
                         <div class="d-flex">
                             <a href="{{ route('login') }}" class="btn btn-login btn-sm">Login</a>
@@ -257,6 +289,23 @@
                 <p>Thank you for your purchase!</p>
             </div>
         </div>
+
+                <!-- Footer -->
+                <footer class="row">
+            <div class="container d-flex flex-column align-items-center">
+                <img src="{{ asset('assets/img/logo-capstone1.png') }}" alt="Logo" class="footer-logo">
+                <ul class="footer-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#product">Products</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+                <div class="footer-copy">
+                    <p>&copy; 2024 Mega Mart. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-qhM/5AfpC7FzAIC9j6zBgtT4egM9yozT9IhI7YO09mBUQjOeBIyRBrjYe2IHZvLD" crossorigin="anonymous"></script>
