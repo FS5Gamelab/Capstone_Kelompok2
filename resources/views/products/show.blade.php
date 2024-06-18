@@ -95,12 +95,14 @@
         .quantity-input {
             max-width: 80px;
         }
-        .btn-primary {
+        .btn-cart {
             background-color: #0cc0df;
-            border: none;
+            color: #fff;
         }
-        .btn-primary:hover {
-            background-color: #0aa7c1;
+        .btn-cart:hover {
+            background-color: #fff;
+            color: #0cc0df;
+            border: 1px solid #0cc0df;
         }
         .about-section {
             background-color: #ffffff;
@@ -192,7 +194,7 @@
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="#product">Products</a>
+                                <a class="nav-link" href="{{ route('index') }}#product">Products</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#about">About</a>
@@ -278,7 +280,7 @@
                             </div>
                         </div>
 
-                        <button class="btn btn-primary btn-md mt-3" id="btn-cart">Add to Cart</button>
+                        <button class="btn btn-cart btn-md mt-3" id="btn-cart">Add to Cart</button>
                     </div>
                 </div>
             </div>

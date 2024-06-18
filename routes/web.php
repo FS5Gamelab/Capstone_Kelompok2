@@ -52,4 +52,8 @@ Route::get('show', function () {
     return view('products.show');
 })->name('show');
 
+Route::get('index', function () {
+    return view('index');
+})->name('index');
+
 require __DIR__.'/auth.php';

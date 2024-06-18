@@ -50,13 +50,12 @@
             font-weight: 500;
             border-radius: 5px;
         }
-        .btn-login, .btn-search {
+        .btn-login {
             background-color: #fff;
             color: #0cc0df;
-            border: 1;
-            border-color: #0cc0df;
+            border: 1px solid #0cc0df;
         }
-        .btn-login, .btn-search:hover {
+        .btn-login:hover {
             background-color: #0cc0df;
             color: #fff;
         }
@@ -67,8 +66,7 @@
         .btn-signup:hover {
             background-color: #fff;
             color: #0cc0df;
-            border: 1;
-            border-color: #0cc0df;
+            border: 1px solid #0cc0df;
         }
 
         .carousel-item img {
@@ -79,6 +77,15 @@
 
         #nav-all-tab, #nav-cat1-tab, #nav-cat2-tab, #nav-cat3-tab, #nav-cat4-tab {
             color: #0cc0df;
+        }
+        .btn-search {
+            background-color: #fff;
+            color: #0cc0df;
+            border: 1px solid #0cc0df;
+        }
+        .btn-search:hover {
+            background-color: #0cc0df;
+            color: #fff;
         }
         .product-card {
             margin-bottom: 30px;
