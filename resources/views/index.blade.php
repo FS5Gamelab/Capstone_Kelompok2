@@ -50,13 +50,13 @@
             font-weight: 500;
             border-radius: 5px;
         }
-        .btn-login {
+        .btn-login, .btn-search {
             background-color: #fff;
             color: #0cc0df;
             border: 1;
             border-color: #0cc0df;
         }
-        .btn-login:hover {
+        .btn-login, .btn-search:hover {
             background-color: #0cc0df;
             color: #fff;
         }
@@ -77,7 +77,7 @@
             object-fit: cover;
         }
 
-        #nav-cat1-tab, #nav-cat2-tab {
+        #nav-all-tab, #nav-cat1-tab, #nav-cat2-tab, #nav-cat3-tab, #nav-cat4-tab {
             color: #0cc0df;
         }
         .product-card {
@@ -108,17 +108,6 @@
             color: #666;
             margin-bottom: 15px;
         }
-        .btn-primary {
-            background-color: #0cc0df;
-            border-color: #0cc0df;
-            border-radius: 5px;
-            padding: 10px 20px;
-            font-weight: 500;
-        }
-        .btn-primary:hover {
-            background-color: #0056b3;
-            border-color: #0056b3;
-        }
         .about-section {
             background-color: #ffffff;
             padding: 60px 0;
@@ -126,7 +115,7 @@
         }
         .about-section h2 {
             font-weight: 700;
-            color: #333;
+            color: #0cc0df;
             margin-bottom: 20px;
         }
         .about-section p {
@@ -165,7 +154,7 @@
             font-weight: 500;
         }
         .footer-links a:hover {
-            text-decoration: underline;
+            color: #0cc0df;
         }
         .footer-copy {
             margin-top: 20px;
@@ -199,10 +188,10 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Products</a>
+                            <a class="nav-link" aria-current="page" href="#product">Products</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">About</a>
+                            <a class="nav-link" href="#about">About</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">FAQ</a>
@@ -255,7 +244,7 @@
         </section>
 
         <!-- Show Product -->
-        <section class="row py-5">
+        <section class="row py-5" id="product">
             <div class="container">
                 <div class="d-flex justify-content-between align-items-center mb-4">
                     <nav>
@@ -263,10 +252,13 @@
                             <button class="nav-link active" id="nav-all-tab" data-bs-toggle="tab" data-bs-target="#nav-all" type="button" role="tab" aria-controls="nav-all" aria-selected="true">All</button>
                             <button class="nav-link" id="nav-cat1-tab" data-bs-toggle="tab" data-bs-target="#nav-cat1" type="button" role="tab" aria-controls="nav-cat1" aria-selected="false">Category 1</button>
                             <button class="nav-link" id="nav-cat2-tab" data-bs-toggle="tab" data-bs-target="#nav-cat2" type="button" role="tab" aria-controls="nav-cat2" aria-selected="false">Category 2</button>
+                            <button class="nav-link" id="nav-cat3-tab" data-bs-toggle="tab" data-bs-target="#nav-cat3" type="button" role="tab" aria-controls="nav-cat3" aria-selected="false">Category 3</button>
+                            <button class="nav-link" id="nav-cat4-tab" data-bs-toggle="tab" data-bs-target="#nav-cat4" type="button" role="tab" aria-controls="nav-cat4" aria-selected="false">Category 4</button>
                         </div>
                     </nav>
                     <div class="input-group w-50">
                         <input type="text" id="searchInput" class="form-control" placeholder="Search products...">
+                        <button class="btn btn-search" type="submit">Search</button>    
                     </div>
                 </div>
 
@@ -287,16 +279,16 @@
                 </div>
             </div>
             <div>
-                    <nav aria-label="Page navigation">
-                        <ul class="pagination justify-content-center" id="pagination">
+                <nav aria-label="Page navigation">
+                    <ul class="pagination justify-content-center" id="pagination">
                             <!-- Pagination items will be dynamically added here -->
-                        </ul>
-                    </nav>
-                </div>
+                    </ul>
+                </nav>
+            </div>
         </section>
 
         <!-- About Section -->
-        <section class="row about-section">
+        <section class="row about-section" id="about">
             <div class="container">
                 <h2>About Us</h2>
                 <p>Welcome to our store! We offer a wide range of quality products to meet your needs. Our mission is to provide a pleasant shopping experience with a friendly touch. Shop with us and discover the best deals and products!</p>
