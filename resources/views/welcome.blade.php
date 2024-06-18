@@ -199,7 +199,7 @@
                             <a class="nav-link" href="#">Contact</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('cart') }}"><span class="material-icons">shopping_cart</span></a>
+                            <a class="nav-link" href="{{ route('user.cart') }}"><span class="material-icons">shopping_cart</span></a>
                         </li>
                     </ul>
                     <div class="d-flex">
@@ -263,18 +263,18 @@
 
                 <div class="row" id="productContainer">
                     <!-- Product Cards -->
-                    @for ($i = 1; $i <= 12; $i++)
+                    @foreach ($products as $item)
                         <div class="col-lg-3 col-md-4 col-sm-6 product-card">
-                            <div class="card" onclick="window.location.href='#';">
-                                <img src="https://via.placeholder.com/350x250" class="card-img-top" alt="Product {{ $i }}">
+                            <div class="card" onclick="window.location.href='{{ route('product.show', $item->code) }}';">
+                                <img src="{{ $item->image ? asset('storage/Products/'.$item->image) : asset('storage/Default/brand.png') }}" class="card-img-top" alt="{{ $item->name }}">
                                 <div class="card-body">
-                                    <h5 class="card-title">Product {{ $i }}</h5>
-                                    <p class="card-text">Description for product {{ $i }}.</p>
-                                    <p class="card-text">Price: ${{ rand(10, 100) }}</p>
+                                    <h5 class="card-title">{{ $item->name }}</h5>
+                                    <p class="card-text">{{ $item->description }}</p>
+                                    <p class="card-text">Rp{{ $item->price }},00</p>
                                 </div>
                             </div>
                         </div>
-                    @endfor
+                    @endforeach
                 </div>
             </div>
             <div>
@@ -318,16 +318,18 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
     <script>
-        const products = [];
-        for (let i = 1; i <= 50; i++) {
-            products.push({
-                id: i,
-                title: `Product ${i}`,
-                description: `Description for product ${i}.`,
-                price: Math.floor(Math.random() * 100) + 10,
-                imgSrc: 'https://via.placeholder.com/350x250'
-            });
-        }
+        const products = [
+            @foreach ($products as $item)
+                {
+                    id: {{ $loop->iteration }},
+                    code: {{ $item->code }},
+                    title: {{ $item->name }},
+                    description: {{ $item->description }},
+                    price: {{ $item->price }},
+                    imgSrc: {{ $item->image ? asset('storage/Products/'.$item->image) : asset('storage/Default/brand.png') }},
+                },
+            @endforeach
+        ];
 
         let currentPage = 1;
         const itemsPerPage = 12;
@@ -342,7 +344,7 @@
             paginatedItems.forEach(product => {
                 const productCard = `
                     <div class="col-lg-3 col-md-4 col-sm-6 product-card">
-                        <div class="card" onclick="window.location.href='{{ route('show') }}';">
+                        <div class="card" onclick="window.location.href='/product/${product.code}';">
                             <img src="${product.imgSrc}" class="card-img-top" alt="${product.title}">
                             <div class="card-body">
                                 <h5 class="card-title">${product.title}</h5>

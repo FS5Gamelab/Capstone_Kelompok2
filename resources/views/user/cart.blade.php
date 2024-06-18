@@ -191,39 +191,30 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($carts as $item)
+                            @php
+                                $total += ($item->amount * $item->product->price)
+                            @endphp
                             <tr>
                                 <td>
-                                    <img src="https://via.placeholder.com/100x100" class="img-fluid product-img" alt="Product Image">
-                                    <span class="product-name">Product Name</span>
+                                    <img src="{{ $item->product->image ? asset('storage/Products/'.$item->product->image) : asset('storage/Default/brand.png') }}" class="img-fluid product-img" alt="{{ $item->product->name }}">
+                                    <span class="product-name">{{ $item->product->name }}</span>
                                 </td>
-                                <td class="product-price">$100.00</td>
+                                <td class="product-price">{{ $item->product->price }}</td>
                                 <td>
-                                    <input type="number" class="form-control quantity-input form-control-sm" value="1" min="1">
+                                    <input type="number" name="amount" class="form-control quantity-input form-control-sm" value="{{ $item->amount }}" min="1">
                                 </td>
-                                <td class="product-price">$100.00</td>
+                                <td class="product-price">Rp{{ $item->amount * $item->product->price }}</td>
                                 <td>
                                     <button class="btn btn-remove"><span class="material-icons">delete</span></button>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>
-                                    <img src="https://via.placeholder.com/100x100" class="img-fluid product-img" alt="Product Image">
-                                    <span class="product-name">Product Name</span>
-                                </td>
-                                <td class="product-price">$120.00</td>
-                                <td>
-                                    <input type="number" class="form-control quantity-input form-control-sm" value="1" min="1">
-                                </td>
-                                <td class="product-price">$240.00</td>
-                                <td>
-                                    <button class="btn btn-remove"><span class="material-icons">delete</span></button>
-                                </td>
-                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
                 <div class="d-flex justify-content-end align-items-center mt-4">
-                    <span class="total-price me-3">Total: $100.00</span>
+                    <span class="total-price me-3">Total: Rp{{ $total }}</span>
                     <a href="{{ route('checkout') }}" class="btn btn-checkout">Checkout</a>
                 </div>
             </div>

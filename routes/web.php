@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DiscountController;
+use App\Http\Controllers\GuestController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShipmentController;
@@ -11,9 +13,14 @@ use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('index');
+Route::get('/', [GuestController::class, 'index'])->name('index');
+Route::get('product/{product:code}', [GuestController::class, 'show'])->name('product.show');
+Route::prefix('user')->group(function(){
+
+    Route::get('cart', [CartController::class, 'index'])->name('user.cart');
 });
+
+Route::post('product/{product:code}', [CartController::class, 'update'])->middleware('auth');
 
 Route::middleware(['auth','authorization'])->group(function () {
 
@@ -45,18 +52,6 @@ Route::middleware(['auth','authorization'])->group(function () {
         Route::resource('users', UserController::class);
     });
 });
-
-Route::get('show', function () {
-    return view('products.show');
-})->name('show');
-
-Route::get('index', function () {
-    return view('index');
-})->name('index');
-
-Route::get('cart', function () {
-    return view('user.cart');
-})->name('cart');
 
 Route::get('checkout', function () {
     return view('user.checkout');

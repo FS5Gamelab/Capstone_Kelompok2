@@ -19,7 +19,9 @@
     <x-snav active="{{ Request::is('dashboard/news') }}" href="#" icon="newspaper">News</x-snav>
     <x-snav active="{{ Request::is('dashboard/events') }}" href="#" icon="event">Events</x-snav>
 
+    @if (Auth::user()->role == 'master')
     <div class="container-fluid mt-3 mb-1 bg-light">Manage</div>
     <x-snav active="{{ Request::is('dashboard/users') }}" href="#" icon="person">Users</x-snav>
     <x-snav active="{{ Request::is('dashboard/employees') }}" href="#" icon="badge">Employees</x-snav>
+    @endif
 </nav>

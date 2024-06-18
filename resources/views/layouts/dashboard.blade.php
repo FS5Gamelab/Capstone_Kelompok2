@@ -29,6 +29,7 @@
                 height: 100vh
             }
         </style>
+        @yield('style')
     </head>
     <body>
         <div class="position-relative container-fluid h-100">

@@ -206,7 +206,7 @@
                                 <a class="nav-link" href="#">Contact</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('cart') }}"><span class="material-icons">shopping_cart</span></a>
+                                <a class="nav-link" href="{{ route('user.cart') }}"><span class="material-icons">shopping_cart</span></a>
                             </li>
                         </ul>
                         <div class="d-flex">
@@ -227,13 +227,7 @@
                         <div id="productCarousel" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                    <img src="https://via.placeholder.com/600x600" class="d-block w-100" alt="Product Image 1">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="https://via.placeholder.com/600x600" class="d-block w-100" alt="Product Image 2">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="https://via.placeholder.com/600x600" class="d-block w-100" alt="Product Image 3">
+                                    <img src="{{ $product->image ? asset('storage/Products/'.$product->image) : asset('storage/Default/brand.png') }}" class="d-block w-100" alt="{{ $product->name }}">
                                 </div>
                             </div>
                             <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
@@ -249,14 +243,15 @@
 
                     <!-- Product Details -->
                     <div class="col-md-6">
-                        <h2 class="product-name">Nama Produk</h2>
-                        <p class="product-category text-muted">Kategori Produk</p>
-                        <h3 class="product-price">Rp 123,456</h3>
-                        <p class="product-description">Deskripsi singkat tentang produk ini. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sequi libero maxime minus ipsa perferendis at atque, cupiditate consectetur eveniet exercitationem.</p>
+                        <h2 class="product-name">{{ $product->name }}</h2>
+                        <p class="product-category text-muted">{{ $product->subCategory->name }}</p>
+                        <h3 class="product-price">Rp{{ $product->price }},00</h3>
+                        <p class="product-description">{{ $product->description }}</p>
 
                         <!-- Product Options -->
-                        <div class="product-options">
-                            <div class="mb-3">
+                        <form class="product-options" action="{{ route('product.show', $product->code) }}" method="post">
+                            @csrf
+                            {{-- <div class="mb-3">
                                 <label for="productColor" class="form-label">Warna</label>
                                 <select class="form-select form-select-sm" id="productColor">
                                     <option selected>Pilih warna</option>
@@ -273,14 +268,13 @@
                                     <option value="M">M</option>
                                     <option value="L">L</option>
                                 </select>
-                            </div>
+                            </div> --}}
                             <div class="mb-3">
                                 <label for="productQuantity" class="form-label">Kuantitas</label>
-                                <input type="number" class="form-control quantity-input form-control-sm" id="productQuantity" value="1" min="1">
+                                <input type="number" class="form-control quantity-input form-control-sm" name="amount" id="productQuantity" value="1" min="1">
                             </div>
-                        </div>
-
-                        <button class="btn btn-cart btn-md mt-3" id="btn-cart">Add to Cart</button>
+                            <button type="submit" class="btn btn-cart btn-md mt-3" id="btn-cart">Add to Cart</button>
+                        </form>
                     </div>
                 </div>
             </div>
