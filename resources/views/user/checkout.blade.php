@@ -292,7 +292,7 @@
                     </ul>
                 </div>
                 <div class="d-flex justify-content-end">
-                    <button class="btn w-50 btn-checkout btn-lg">Place Order</button>
+                    <a href="{{ route('invoice') }}" class="btn w-50 btn-checkout btn-lg">Place Order</a>
                 </div>
             </div>
         </section>

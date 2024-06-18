@@ -63,4 +63,8 @@ Route::get('checkout', function () {
     return view('user.checkout');
 })->name('checkout');
 
+Route::get('invoice', function () {
+    return view('user.invoice');
+})->name('invoice');
+
 require __DIR__.'/auth.php';
