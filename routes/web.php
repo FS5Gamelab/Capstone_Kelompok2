@@ -15,17 +15,16 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('dashboard', function(){
-    return view('dashboard.index',[
-        'title' => 'Dashboard'
-    ]);
-})->middleware('auth');
-
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth','authorization'])->group(function () {
 
     // Dashboard
     Route::prefix('dashboard')->group(function(){
-
+        Route::get('/', function(){
+            return view('dashboard.index',[
+                'title' => 'Dashboard'
+            ]);
+        });
+        
         // Product Contents
         Route::prefix('products')->group(function(){
             Route::get('/', function() {

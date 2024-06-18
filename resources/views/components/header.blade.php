@@ -43,7 +43,7 @@
                 </div>
                 <div class="nav-item dropdown d-none d-md-block">
                     <a type="button" class="btn btn-dark d-flex align-items-center p-1" data-bs-toggle="dropdown">
-                        <img class="rounded-circle me-2 border border-3 border-warning" src="{{ asset('assets/img/sample.png') }}" height="36px" alt="">
+                        <img class="rounded-circle me-2 border border-3 border-warning" src="{{ Auth::user()->image ? asset('storage/User/'.Auth::user()->image) : asset('storage/Default/user.png') }}" height="36px" alt="">
                         {{ Str::limit(Auth::user()->name, 15) }}
                     </a>
                     <div class="dropdown-menu mt-1 dropdown-menu-dark p-2 dropdown-menu-end">

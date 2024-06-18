@@ -23,7 +23,7 @@
                     </div>
                     <div class="nav-item d-block d-md-none">
                         <a href="#" class="btn btn-dark d-flex align-items-center p-1">
-                            <img class="rounded-circle" src="{{ asset('assets/img/sample.png') }}" height="32px" alt="">
+                            <img class="rounded-circle" src="{{ Auth::user()->image ? asset('storage/User/'.Auth::user()->image) : asset('storage/Default/user.png') }}" height="32px" alt="">
                             <span class="ps-2 d-none d-sm-block">{{ Str::limit(Auth::user()->name, 15) }}</span>
                         </a>
                     </div>
