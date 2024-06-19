@@ -7,7 +7,6 @@ use App\Models\Brand;
 use App\Models\Product;
 use App\Models\Discount;
 use App\Models\SubCategory;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
