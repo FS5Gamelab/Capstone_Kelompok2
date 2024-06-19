@@ -14,8 +14,11 @@ class GuestController extends Controller
     }
 
     public function show(Product $product){
+        $categoryId = $product->category_id;
+        $relations = Product::where('category_id', $categoryId)->where('id', '!=', $product->id)->limit(20)->get();
         return view('products.show', [
-            'product' => $product
+            'product' => $product,
+            'relations' => $relations
         ]);
     }
 }

@@ -14,7 +14,7 @@
 
     <!-- Google Icons -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-    
+
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -170,6 +170,71 @@
             border-color: #0cc0df;
             color: #fff;
         }
+        .product-name {
+            font-weight: 700;
+            color: #333;
+        }
+        .product-category {
+            color: #999;
+        }
+        .product-price {
+            color: #0cc0df;
+            font-weight: 600;
+        }
+        .product-description {
+            color: #666;
+            line-height: 1.6;
+        }
+        .product-options .form-label {
+            font-weight: 500;
+            color: #333;
+        }
+        .quantity-input {
+            max-width: 80px;
+        }
+        .btn-cart {
+            background-color: #0cc0df;
+            color: #fff;
+        }
+        .btn-cart:hover {
+            background-color: #fff;
+            color: #0cc0df;
+            border: 1px solid #0cc0df;
+        }
+        .about-section {
+            background-color: #ffffff;
+            padding: 60px 0;
+            text-align: center;
+        }
+        .about-section h2 {
+            font-weight: 700;
+            color: #0cc0df;
+            margin-bottom: 20px;
+        }
+        .about-section p {
+            color: #666;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .rating {
+            color: #ffdd00;
+            font-size: 24px;
+        }
+        .review {
+            margin-bottom: 20px;
+        }
+        .review .review-author {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        .review .review-date {
+            font-size: 14px;
+            color: #999;
+        }
+        .review .review-text {
+            color: #555;
+        }
     </style>
 </head>
 <body>
@@ -179,7 +244,7 @@
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{ route('index') }}">
-                    <img src="{{ asset('assets/img/logo-capstone1.png') }}" alt="Logo" class="d-inline-block align-text-top">
+                    <img src="{{ asset('assets/img/logo-capstone1.png') }}" alt="Logo" class="d-inline-block align-text-top" href="{{ route('index') }}">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -213,78 +278,11 @@
         </header>
 
         <!-- Slideshow -->
-        <section class="row">
-            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                </div>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="https://via.placeholder.com/1920x600" class="d-block w-100" alt="Slide 1">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="https://via.placeholder.com/1920x600" class="d-block w-100" alt="Slide 2">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="https://via.placeholder.com/1920x600" class="d-block w-100" alt="Slide 3">
-                    </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
-        </section>
-
+        
+        <!-- Product Detail Section -->
+            @yield('contents')
         <!-- Show Product -->
-        <section class="row py-5" id="product">
-            <div class="container">
-                <div class="d-flex justify-content-between align-items-center mb-4">
-                    <nav>
-                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                            <button class="nav-link active" id="nav-all-tab" data-bs-toggle="tab" data-bs-target="#nav-all" type="button" role="tab" aria-controls="nav-all" aria-selected="true">All</button>
-                            <button class="nav-link" id="nav-cat1-tab" data-bs-toggle="tab" data-bs-target="#nav-cat1" type="button" role="tab" aria-controls="nav-cat1" aria-selected="false">Category 1</button>
-                            <button class="nav-link" id="nav-cat2-tab" data-bs-toggle="tab" data-bs-target="#nav-cat2" type="button" role="tab" aria-controls="nav-cat2" aria-selected="false">Category 2</button>
-                            <button class="nav-link" id="nav-cat3-tab" data-bs-toggle="tab" data-bs-target="#nav-cat3" type="button" role="tab" aria-controls="nav-cat3" aria-selected="false">Category 3</button>
-                            <button class="nav-link" id="nav-cat4-tab" data-bs-toggle="tab" data-bs-target="#nav-cat4" type="button" role="tab" aria-controls="nav-cat4" aria-selected="false">Category 4</button>
-                        </div>
-                    </nav>
-                    <div class="input-group w-50">
-                        <input type="text" id="searchInput" class="form-control" placeholder="Search products...">
-                        <button class="btn btn-search" type="submit">Search</button>    
-                    </div>
-                </div>
 
-                <div class="row" id="productContainer">
-                    <!-- Product Cards -->
-                    @foreach ($products as $item)
-                        <div class="col-lg-3 col-md-4 col-sm-6 product-card">
-                            <div class="card" onclick="window.location.href='{{ route('product.show', $item->code) }}';">
-                                <img src="{{ $item->image ? asset('storage/Products/'.$item->image) : asset('storage/Default/brand.png') }}" class="card-img-top" alt="{{ $item->name }}">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ $item->name }}</h5>
-                                    <p class="card-text">{{ $item->description }}</p>
-                                    <p class="card-text">Rp{{ $item->price }},00</p>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-            <div>
-                <nav aria-label="Page navigation">
-                    <ul class="pagination justify-content-center" id="pagination">
-                            <!-- Pagination items will be dynamically added here -->
-                    </ul>
-                </nav>
-            </div>
-        </section>
 
         <!-- About Section -->
         <section class="row about-section" id="about">
@@ -317,97 +315,6 @@
     <!-- Bootstrap@5.3.3 JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
-    <script>
-        const products = [
-            @foreach ($products as $item)
-                {
-                    id: {{ $loop->iteration }},
-                    code: {{ $item->code }},
-                    title: {{ $item->name }},
-                    description: {{ $item->description }},
-                    price: {{ $item->price }},
-                    imgSrc: {{ $item->image ? asset('storage/Products/'.$item->image) : asset('storage/Default/brand.png') }},
-                },
-            @endforeach
-        ];
-
-        let currentPage = 1;
-        const itemsPerPage = 12;
-
-        function displayProducts(page) {
-            const productContainer = document.getElementById('productContainer');
-            productContainer.innerHTML = '';
-            const start = (page - 1) * itemsPerPage;
-            const end = start + itemsPerPage;
-            const paginatedItems = products.slice(start, end);
-
-            paginatedItems.forEach(product => {
-                const productCard = `
-                    <div class="col-lg-3 col-md-4 col-sm-6 product-card">
-                        <div class="card" onclick="window.location.href='/product/${product.code}';">
-                            <img src="${product.imgSrc}" class="card-img-top" alt="${product.title}">
-                            <div class="card-body">
-                                <h5 class="card-title">${product.title}</h5>
-                                <p class="card-text">${product.description}</p>
-                                <p class="card-text">Price: $${product.price}</p>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                productContainer.insertAdjacentHTML('beforeend', productCard);
-            });
-
-            renderPagination();
-        }
-
-        function renderPagination() {
-            const paginationContainer = document.getElementById('pagination');
-            paginationContainer.innerHTML = '';
-            const pageCount = Math.ceil(products.length / itemsPerPage);
-
-            for (let i = 1; i <= pageCount; i++) {
-                const pageItem = `
-                    <li class="page-item ${i === currentPage ? 'active' : ''}">
-                        <a class="page-link" href="#" onclick="goToPage(${i})">${i}</a>
-                    </li>
-                `;
-                paginationContainer.insertAdjacentHTML('beforeend', pageItem);
-            }
-        }
-
-        function goToPage(page) {
-            currentPage = page;
-            displayProducts(page);
-        }
-
-        function searchProducts() {
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-            const filteredProducts = products.filter(product => product.title.toLowerCase().includes(searchTerm) || product.description.toLowerCase().includes(searchTerm));
-
-            const productContainer = document.getElementById('productContainer');
-            productContainer.innerHTML = '';
-            filteredProducts.forEach(product => {
-                const productCard = `
-                    <div class="col-lg-3 col-md-4 col-sm-6 product-card">
-                        <div class="card" onclick="window.location.href='#';">
-                            <img src="${product.imgSrc}" class="card-img-top" alt="${product.title}">
-                            <div class="card-body">
-                                <h5 class="card-title">${product.title}</h5>
-                                <p class="card-text">${product.description}</p>
-                                <p class="card-text">Price: $${product.price}</p>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                productContainer.insertAdjacentHTML('beforeend', productCard);
-            });
-
-            renderPagination();
-        }
-
-        document.getElementById('searchInput').addEventListener('input', searchProducts);
-
-        displayProducts(currentPage);
-    </script>
+    @yield('scripts')
 </body>
 </html>
