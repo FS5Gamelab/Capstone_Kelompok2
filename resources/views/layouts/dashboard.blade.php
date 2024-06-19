@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Dashboard Template</title>
+        <title>Mega Mart | {{ $title }}</title>
         {{-- <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"> --}}
 
         {{-- Bootstrap@5.3.3 CSS Framework --}}

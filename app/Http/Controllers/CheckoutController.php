@@ -29,3 +29,4 @@ class CheckoutController extends Controller
         $snapToken = Snap::getSnapToken($params);
     }
 }
+// Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore et deleniti odit laborum aliquid ab neque sed sequi, repellendus illum esse. Quod odit labore facilis repudiandae quo atque quibusdam voluptate dolorum, sed doloremque voluptatibus eligendi! Quia fugit delectus quis nobis, eum aspernatur quas corrupti neque maiores cupiditate aperiam distinctio nesciunt?

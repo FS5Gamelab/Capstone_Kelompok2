@@ -153,10 +153,10 @@ class ProductController extends Controller
         $oldImage = $item->image;
         Storage::delete('public/Products/'.$oldImage);
         $item->delete();
-        return redirect()->route('products.index')->with(
+        return redirect()->route('items.index')->with(
             'response',[
-                'status' => 'success',  
-                'messages' => 'Product deleted successfully'
+                'type' => 'success',  
+                'message' => 'Product deleted successfully'
             ]);
     }
 }
