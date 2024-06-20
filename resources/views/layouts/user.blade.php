@@ -235,6 +235,11 @@
         .review .review-text {
             color: #555;
         }
+        .drop {
+            padding: 4px 8px;
+            border-radius: 20px;
+            transition: background-color 0.3s ease;
+        }
     </style>
 </head>
 <body>
@@ -267,10 +272,48 @@
                             <a class="nav-link" href="{{ route('user.cart') }}"><span class="material-icons">shopping_cart</span></a>
                         </li>
                     </ul>
+                    @guest     
                     <div class="d-flex">
                         <a href="{{ route('login') }}" class="btn btn-login btn-sm">Login</a>
                         <a href="{{ route('register') }}" class="btn btn-signup btn-sm">Sign Up</a>
                     </div>
+                    @else
+                    <div class="nav-item dropdown d-none d-md-block">
+                        <a type="button" class="drop btn btn-login d-flex align-items-center p-1" data-bs-toggle="dropdown">
+                            <img class="rounded-circle me-2 border border-3 border-warning" 
+                                 src="{{ optional(Auth::user())->image ? asset('storage/User/'.Auth::user()->image) : asset('storage/Default/user.png') }}" 
+                                 height="36px" width="36px" 
+                                 alt="{{ optional(Auth::user())->name ?? 'User' }}">
+                            {{ Str::limit(optional(Auth::user())->name, 15, '...') }}
+                        </a>
+                        <div class="dropdown-menu mt-1 dropdown-menu-light p-2 dropdown-menu-end">
+                            <div class="nav-item d-flex mb-3">
+                                <a href="{{ route('profile') }}" class="nav-link link-dark d-flex align-items-center flex-fill">
+                                    <span class="material-symbols-outlined me-2">person</span>
+                                    Profile
+                                </a>
+                            </div>
+                            <div class="nav-item d-flex mb-3">
+                                <a href="#" class="nav-link link-dark d-flex align-items-center flex-fill">
+                                    <span class="material-symbols-outlined me-2">settings</span>
+                                    Setting
+                                </a>
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            <div class="nav-item d-flex" style="cursor: pointer">
+                                <a class="nav-link link-danger d-flex align-items-center flex-fill"
+                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    <span class="material-symbols-outlined me-2">logout</span>
+                                    Log Out
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    @endguest
                 </div>
             </div>
         </nav>

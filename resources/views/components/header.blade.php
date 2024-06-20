@@ -60,11 +60,15 @@
                             </a>
                         </div>
                         <div class="nav-item dropdown-divider"></div>
-                        <div class="nav-item d-flex">
-                            <a href="{{ route('logout') }}" class="nav-link link-danger d-flex align-items-center flex-fill">
+                        <div class="nav-item d-flex" style="cursor: pointer">
+                            <a class="nav-link link-danger d-flex align-items-center flex-fill"
+                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 <span class="material-symbols-outlined me-2">logout</span>
                                 Log Out
                             </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
                         </div>
                     </div>
                 </div>
