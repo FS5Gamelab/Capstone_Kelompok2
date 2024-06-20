@@ -55,7 +55,7 @@
                                 <img src="{{ $item->image ? asset('storage/Products/'.$item->image) : asset('storage/Default/brand.png') }}" class="card-img-top" alt="{{ $item->name }}">
                                 <div class="card-body">
                                     <h5 class="card-title">{{ $item->name }}</h5>
-                                    <p class="card-text">{{ substr($item->description, 0, 50) }}</p>
+                                    <p class="card-text">{{ substr($item->description, 0, 50) }}...</p>
                                     <p class="card-text">Rp{{ $item->price }},00</p>
                                 </div>
                             </div>
