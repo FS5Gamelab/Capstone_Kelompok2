@@ -44,13 +44,13 @@
                             Sign Out
                         </a>
                     </div>
-                    <hr class="border">
+                    {{-- <hr class="border">
                     <div class="nav-item mb-2">
                         <a href="#" class="btn btn-dark p-0 ps-2 d-flex link-light text-truncate">FAQ</a>
                     </div>
                     <div class="nav-item mb-2">
                         <a href="#" class="btn btn-dark p-0 ps-2 d-flex link-light text-truncate">Help Center</a>
-                    </div>
+                    </div> --}}
                     <div class="nav-item">
                         <a href="#" class="btn btn-dark p-0 ps-2 d-flex link-light text-truncate">Report Bug</a>
                     </div>
@@ -71,12 +71,12 @@
             <x-snavbar></x-snavbar>
         </div>
         <div class="container-fluid py-3 border-top border-secondary">
-            <div class="nav-item mb-2">
+            {{-- <div class="nav-item mb-2">
                 <a href="#" class="btn btn-dark p-0 ps-2 d-flex link-light text-truncate">FAQ</a>
             </div>
             <div class="nav-item mb-2">
                 <a href="#" class="btn btn-dark p-0 ps-2 d-flex link-light text-truncate">Help Center</a>
-            </div>
+            </div> --}}
             <div class="nav-item">
                 <a href="#" class="btn btn-dark p-0 ps-2 d-flex link-light text-truncate">Report Bug</a>
             </div>

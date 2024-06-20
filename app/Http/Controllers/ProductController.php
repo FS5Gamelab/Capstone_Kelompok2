@@ -22,9 +22,11 @@ class ProductController extends Controller
         $products = Product::orderBy('created_at', 'desc')->paginate(20);
         $subcategories = SubCategory::all();
         $brands = Brand::all();
-        $discounts = Discount::all();
         return view('dashboard.products.index', [
-            'title' => 'Product', 'data' => $products, 'subcategories' => $subcategories, 'brands' => $brands, 'discounts' => $discounts
+            'title' => 'Product',
+            'data' => $products,
+            'subcategories' => $subcategories,
+            'brands' => $brands
         ]);
     }
 
@@ -32,7 +34,34 @@ class ProductController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    {
+    {   
+        if(count(Brand::all()) < 1){
+            return redirect()->route('brands.create')->with(
+                'response', [
+                    'type' => 'warning',
+                    'message' => 'Please add at least 1 brand before adding a new product.'
+                ]
+                );
+        }
+
+        if(count(SubCategory::all()) < 1){
+            if(count(Category::all())){
+                return redirect()->route('sub-categories.create')->with(
+                    'response', [
+                        'type' => 'warning',
+                        'message' => 'Please add at least 1 sub-category before adding a new product.'
+                    ]
+                    );
+            } else{
+                return redirect()->route('categories.create')->with(
+                    'response', [
+                        'type' => 'warning',
+                        'message' => 'Please add at least 1 category before adding a new product.'
+                    ]
+                    );
+            }
+        }
+
         return view('dashboard.products.create', [
             'title' => 'Create Product',
             'categories' => SubCategory::select('code','name')->limit(10)->get(),
