@@ -24,7 +24,7 @@
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{ route('index') }}">
-                    <img src="{{ asset('assets/img/logo-capstone1.png') }}" alt="Logo" class="d-inline-block align-text-top" href="{{ route('index') }}">
+                    <img src="{{ asset('assets/img/logo-capstone1.png') }}" alt="Logo" class="d-inline-block align-text-top" height="40px" href="{{ route('index') }}">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -57,7 +57,7 @@
                         <a type="button" class="drop btn btn-login d-flex align-items-center p-1" data-bs-toggle="dropdown">
                             <img class="rounded-circle me-2" 
                                  src="{{ optional(Auth::user())->image ? asset('storage/User/'.Auth::user()->image) : asset('assets/img/default/user.png') }}" 
-                                 height="36px" width="36px" 
+                                 height="36px" 
                                  alt="{{ optional(Auth::user())->name ?? 'User' }}">
                             {{ Str::limit(optional(Auth::user())->name, 15, '...') }}
                         </a>
