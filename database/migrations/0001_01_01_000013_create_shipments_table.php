@@ -13,12 +13,9 @@ return new class extends Migration
     {
         Schema::create('shipments', function (Blueprint $table) {
             $table->id();
-            $table->integer('order_id');
-            $table->string('number');
-            $table->string('status');
-            $table->dateTime('delivery_at');
-            $table->dateTime('arrived_at');
-            $table->dateTime('delivered_at');
+            $table->string('code')->unique();
+            $table->foreignId('transaction_id')->constrained()->onDelete('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -28,6 +25,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('shipments');
+        // Schema::dropIfExists('shipments');
+        Schema::table('shipments', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
     }
 };

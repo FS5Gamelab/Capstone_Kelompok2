@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Order extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
     protected $fillable = [
         'payment_id',
         'address_id',
@@ -23,6 +24,6 @@ class Order extends Model
 
     public function address()
     {
-        return $this->belongsTo(Addresses::class);
+        return $this->belongsTo(Address::class);
     }
 }

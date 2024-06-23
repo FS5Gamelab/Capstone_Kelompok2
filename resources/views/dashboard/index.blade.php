@@ -1,7 +1,19 @@
 @extends('layouts.dashboard')
 
+@section('style')
+    <style>
+        .content-container{
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
+        }
+        .content-item{
+            scroll-snap-align: start;
+        }
+    </style>
+@endsection
+
 @section('contents')
-<div class="content container-fluid h-100 d-flex flex-column">
+<div class="content-item container-fluid h-100 d-flex flex-column" id="home">
     <div class="row py-3">
         <div class="col-12 col-sm-6 col-lg-3 mb-2 mb-sm-2">
             <div class="d-flex shadow rounded">
@@ -58,7 +70,7 @@
         </div>
     </div>
 </div>
-<div class="content bg-success container-fluid h-100">
+<div class="content-item bg-success container-fluid h-100" id="transactions">
 
 </div>
 @endsection

@@ -37,7 +37,7 @@
                 <x-sidebar></x-sidebar>
                 <main class="col-12 col-md-9 col-lg-9 col-xl-10 col-xxl-10 d-flex flex-column p-0 h-100">
                     <x-header :title="$title"></x-header>
-                    <div class="positon-relative flex-fill overflow-y-auto">
+                    <div class="content-container positon-relative flex-fill overflow-y-auto">
                         @if (session('response'))
                         <x-alert :type="session('response')['type']">{{ session('response')['message'] }}</x-alert>
                         @endif
