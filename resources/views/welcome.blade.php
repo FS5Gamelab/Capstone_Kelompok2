@@ -1,5 +1,234 @@
 @extends('layouts.user')
 
+@section('styles')
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        header {
+            font-weight: 700;
+            background-color: #ffffff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .navbar {
+            padding: 10px 20px;
+        }
+        .navbar-brand img {
+            height: 40px;
+        }
+        .navbar-nav .nav-link {
+            color: #333;
+            font-weight: 500;
+            margin: 0 10px;
+        }
+        .navbar-nav .nav-link.active,
+        .navbar-nav .nav-link:hover {
+            color: #0cc0df;
+        }
+        .btn-login,
+        .btn-signup {
+            margin-left: 10px;
+            font-weight: 500;
+            border-radius: 5px;
+        }
+        .btn-login {
+            background-color: #fff;
+            color: #0cc0df;
+            border: 1px solid #0cc0df;
+        }
+        .btn-login:hover {
+            background-color: #0cc0df;
+            color: #fff;
+        }
+        .btn-signup {
+            background-color: #0cc0df;
+            color: #fff;
+        }
+        .btn-signup:hover {
+            background-color: #fff;
+            color: #0cc0df;
+            border: 1px solid #0cc0df;
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: 60vh;
+            object-fit: cover;
+        }
+
+        #nav-all-tab, #nav-cat1-tab, #nav-cat2-tab, #nav-cat3-tab, #nav-cat4-tab {
+            color: #0cc0df;
+        }
+        .btn-search {
+            background-color: #fff;
+            color: #0cc0df;
+            border: 1px solid #0cc0df;
+        }
+        .btn-search:hover {
+            background-color: #0cc0df;
+            color: #fff;
+        }
+        .product-card {
+            margin-bottom: 30px;
+            cursor: pointer;
+        }
+        .card {
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .card-body {
+            padding: 20px;
+            text-align: center;
+        }
+        .card-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #0cc0df;
+        }
+        .card-text {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        .about-section {
+            background-color: #ffffff;
+            padding: 60px 0;
+            text-align: center;
+        }
+        .about-section h2 {
+            font-weight: 700;
+            color: #0cc0df;
+            margin-bottom: 20px;
+        }
+        .about-section p {
+            color: #666;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        footer {
+            background-color: #02262c;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+        .footer-logo {
+            height: 40px;
+            margin-bottom: 10px;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .footer-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .footer-links a:hover {
+            color: #0cc0df;
+        }
+        .footer-copy {
+            margin-top: 10px;
+            font-size: 14px;
+            font-weight: 100;
+        }
+        .pagination .page-item .page-link {
+            color: #0cc0df;
+        }
+        .pagination .page-item.active .page-link {
+            background-color: #0cc0df;
+            border-color: #0cc0df;
+            color: #fff;
+        }
+        .product-name {
+            font-weight: 700;
+            color: #333;
+        }
+        .product-category {
+            color: #999;
+        }
+        .product-price {
+            color: #0cc0df;
+            font-weight: 600;
+        }
+        .product-description {
+            color: #666;
+            line-height: 1.6;
+        }
+        .product-options .form-label {
+            font-weight: 500;
+            color: #333;
+        }
+        .quantity-input {
+            max-width: 80px;
+        }
+        .btn-cart {
+            background-color: #0cc0df;
+            color: #fff;
+        }
+        .btn-cart:hover {
+            background-color: #fff;
+            color: #0cc0df;
+            border: 1px solid #0cc0df;
+        }
+        .about-section {
+            background-color: #ffffff;
+            padding: 60px 0;
+            text-align: center;
+        }
+        .about-section h2 {
+            font-weight: 700;
+            color: #0cc0df;
+            margin-bottom: 20px;
+        }
+        .about-section p {
+            color: #666;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .rating {
+            color: #ffdd00;
+            font-size: 24px;
+        }
+        .review {
+            margin-bottom: 20px;
+        }
+        .review .review-author {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        .review .review-date {
+            font-size: 14px;
+            color: #999;
+        }
+        .review .review-text {
+            color: #555;
+        }
+        .drop {
+            padding: 4px 8px;
+            border-radius: 20px;
+            transition: background-color 0.3s ease;
+        }
+    </style>
+@endsection
+
 @section('contents')
         <!-- Slideshow -->
         <section class="row">
@@ -74,96 +303,96 @@
 @endsection
 
 @section('scripts')
-<script>
-    const products = [
-            @foreach ($products as $item)
-                {
-                    id: {{ $loop->iteration }},
-                    code: {{ $item->code }},
-                    title: {{ $item->name }},
-                    description: {{ $item->description }},
-                    price: {{ $item->price }},
-                    imgSrc: {{ $item->image ? asset('storage/Products/'.$item->image) : asset('storage/Default/brand.png') }},
-                },
-            @endforeach
-        ];
+    <script>
+        const products = [
+                @foreach ($products as $item)
+                    {
+                        id: {{ $loop->iteration }},
+                        code: {{ $item->code }},
+                        title: {{ $item->name }},
+                        description: {{ $item->description }},
+                        price: {{ $item->price }},
+                        imgSrc: {{ $item->image ? asset('storage/Products/'.$item->image) : asset('storage/Default/brand.png') }},
+                    },
+                @endforeach
+            ];
 
-        let currentPage = 1;
-        const itemsPerPage = 12;
+            let currentPage = 1;
+            const itemsPerPage = 12;
 
-        function displayProducts(page) {
-            const productContainer = document.getElementById('productContainer');
-            productContainer.innerHTML = '';
-            const start = (page - 1) * itemsPerPage;
-            const end = start + itemsPerPage;
-            const paginatedItems = products.slice(start, end);
+            function displayProducts(page) {
+                const productContainer = document.getElementById('productContainer');
+                productContainer.innerHTML = '';
+                const start = (page - 1) * itemsPerPage;
+                const end = start + itemsPerPage;
+                const paginatedItems = products.slice(start, end);
 
-            paginatedItems.forEach(product => {
-                const productCard = `
-                    <div class="col-lg-3 col-md-4 col-sm-6 product-card">
-                        <div class="card" onclick="window.location.href='/product/${product.code}';">
-                            <img src="${product.imgSrc}" class="card-img-top" alt="${product.title}">
-                            <div class="card-body">
-                                <h5 class="card-title">${product.title}</h5>
-                                <p class="card-text">${product.description}</p>
-                                <p class="card-text">Price: $${product.price}</p>
+                paginatedItems.forEach(product => {
+                    const productCard = `
+                        <div class="col-lg-3 col-md-4 col-sm-6 product-card">
+                            <div class="card" onclick="window.location.href='/product/${product.code}';">
+                                <img src="${product.imgSrc}" class="card-img-top" alt="${product.title}">
+                                <div class="card-body">
+                                    <h5 class="card-title">${product.title}</h5>
+                                    <p class="card-text">${product.description}</p>
+                                    <p class="card-text">Price: $${product.price}</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                `;
-                productContainer.insertAdjacentHTML('beforeend', productCard);
-            });
+                    `;
+                    productContainer.insertAdjacentHTML('beforeend', productCard);
+                });
 
-            renderPagination();
-        }
-
-        function renderPagination() {
-            const paginationContainer = document.getElementById('pagination');
-            paginationContainer.innerHTML = '';
-            const pageCount = Math.ceil(products.length / itemsPerPage);
-
-            for (let i = 1; i <= pageCount; i++) {
-                const pageItem = `
-                    <li class="page-item ${i === currentPage ? 'active' : ''}">
-                        <a class="page-link" href="#" onclick="goToPage(${i})">${i}</a>
-                    </li>
-                `;
-                paginationContainer.insertAdjacentHTML('beforeend', pageItem);
+                renderPagination();
             }
-        }
 
-        function goToPage(page) {
-            currentPage = page;
-            displayProducts(page);
-        }
+            function renderPagination() {
+                const paginationContainer = document.getElementById('pagination');
+                paginationContainer.innerHTML = '';
+                const pageCount = Math.ceil(products.length / itemsPerPage);
 
-        function searchProducts() {
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-            const filteredProducts = products.filter(product => product.title.toLowerCase().includes(searchTerm) || product.description.toLowerCase().includes(searchTerm));
+                for (let i = 1; i <= pageCount; i++) {
+                    const pageItem = `
+                        <li class="page-item ${i === currentPage ? 'active' : ''}">
+                            <a class="page-link" href="#" onclick="goToPage(${i})">${i}</a>
+                        </li>
+                    `;
+                    paginationContainer.insertAdjacentHTML('beforeend', pageItem);
+                }
+            }
 
-            const productContainer = document.getElementById('productContainer');
-            productContainer.innerHTML = '';
-            filteredProducts.forEach(product => {
-                const productCard = `
-                    <div class="col-lg-3 col-md-4 col-sm-6 product-card">
-                        <div class="card" onclick="window.location.href='#';">
-                            <img src="${product.imgSrc}" class="card-img-top" alt="${product.title}">
-                            <div class="card-body">
-                                <h5 class="card-title">${product.title}</h5>
-                                <p class="card-text">${product.description}</p>
-                                <p class="card-text">Price: $${product.price}</p>
+            function goToPage(page) {
+                currentPage = page;
+                displayProducts(page);
+            }
+
+            function searchProducts() {
+                const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+                const filteredProducts = products.filter(product => product.title.toLowerCase().includes(searchTerm) || product.description.toLowerCase().includes(searchTerm));
+
+                const productContainer = document.getElementById('productContainer');
+                productContainer.innerHTML = '';
+                filteredProducts.forEach(product => {
+                    const productCard = `
+                        <div class="col-lg-3 col-md-4 col-sm-6 product-card">
+                            <div class="card" onclick="window.location.href='#';">
+                                <img src="${product.imgSrc}" class="card-img-top" alt="${product.title}">
+                                <div class="card-body">
+                                    <h5 class="card-title">${product.title}</h5>
+                                    <p class="card-text">${product.description}</p>
+                                    <p class="card-text">Price: $${product.price}</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                `;
-                productContainer.insertAdjacentHTML('beforeend', productCard);
-            });
+                    `;
+                    productContainer.insertAdjacentHTML('beforeend', productCard);
+                });
 
-            renderPagination();
-        }
+                renderPagination();
+            }
 
-        document.getElementById('searchInput').addEventListener('input', searchProducts);
+            document.getElementById('searchInput').addEventListener('input', searchProducts);
 
-        displayProducts(currentPage);
-</script>
-    @endsection
+            displayProducts(currentPage);
+    </script>
+@endsection

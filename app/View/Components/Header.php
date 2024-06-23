@@ -9,6 +9,10 @@ use Illuminate\View\Component;
 class Header extends Component
 {
     public $title;
+    public $authority = [
+        'admin' => 'primary',
+        'master' => 'warning'
+    ];
     /**
      * Create a new component instance.
      */

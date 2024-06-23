@@ -20,7 +20,7 @@ return new class extends Migration
             $table->enum('type',['fixed','percentage'])->default('fixed');
             $table->integer('value');
             $table->integer('max_value');
-            $table->json('details');
+            $table->json('details')->default('{}');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -31,6 +31,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('discounts');
+        // Schema::dropIfExists('discounts');
+        Schema::table('categories', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
     }
 };

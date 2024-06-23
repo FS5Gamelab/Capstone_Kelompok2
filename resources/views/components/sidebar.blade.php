@@ -23,7 +23,7 @@
                     </div>
                     <div class="nav-item d-block d-md-none">
                         <a href="#" class="btn btn-dark d-flex align-items-center p-1">
-                            <img class="rounded-circle" src="{{ Auth::user()->image ? asset('storage/User/'.Auth::user()->image) : asset('storage/Default/user.png') }}" height="32px" alt="">
+                            <img class="rounded-circle border border-3 border-{{ $authority[Auth::user()->role] }}" src="{{ Auth::user()->image ? asset('storage/User/'.Auth::user()->image) : asset('assets/img/default/user.png') }}" height="32px" alt="">
                             <span class="ps-2 d-none d-sm-block">{{ Str::limit(Auth::user()->name, 15) }}</span>
                         </a>
                     </div>
@@ -62,7 +62,7 @@
 <div class="d-none d-md-block col-md-3 col-lg-3 col-xl-2 col-xxl-2 p-0 h-100 overflow-hidden">
     <aside class="h-100 d-flex flex-column bg-dark border-end border-secondary shadow">
         <div class="container-fluid position-relative py-3 d-flex border-bottom border-secondary">
-            <a href="#" class="nav-link link-light d-flex mx-auto text-truncate">
+            <a href="{{ route('index') }}" class="nav-link link-light d-flex mx-auto text-truncate">
                 <img src="{{ asset('assets/img/logo-capstone1.png') }}" alt="" class="border rounded bg-light" height="44px">
                 <span class="px-3 d-flex justify-content-center align-items-center rounded-end fs-4">Mega Mart</span>
             </a>

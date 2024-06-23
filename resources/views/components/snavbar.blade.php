@@ -1,7 +1,6 @@
 <nav class="py-2 h-100 d-flex flex-column gap-2 overflow-y-auto overflow-x-hidden">
     <x-snav active="{{ Request::is('dashboard') }}" href="/dashboard" icon="dashboard">Dashboard</x-snav>
     <x-snav active="{{ Request::is('dashboard/transactions') }}" href="#" icon="receipt_long">Transactions</x-snav>
-    <x-snav active="{{ Request::is('dashboard/shipments') }}" href="#" icon="box">Shipments</x-snav>
     
     <div class="container-fluid mt-3 mb-1 bg-light">Products</div>
     <x-snav active="{{ Request::is('dashboard/products/items*') }}" href="{{ route('items.index') }}" icon="package_2">Product</x-snav>

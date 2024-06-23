@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
+            $table->string('code')->unique();
+            $table->foreignId('order_id')->constrained()->onDelete('cascade');
+            $table->integer('total');
+            $table->enum('status', ['pending', 'paid', 'cancelled', 'expired']);
+            $table->string('payment');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -22,6 +28,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('transactions');
+        // Schema::dropIfExists('transactions');
+        Schema::table('transactions', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
     }
 };
